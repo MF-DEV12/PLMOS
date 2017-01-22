@@ -26,8 +26,7 @@
           <div class="carousel-inner">
             <div class="item active" style="background-image: url(images/slider/1.jpg)">
               <div class="caption">
-                <h1 class="animated fadeInLeftBig">Welcome to <br/>LE<span>GA</span>CY<br/>
-                Aluminum glass and construction supply inc.</h1>
+                <h1 class="animated fadeInLeftBig">Welcome to <br/>LE<span>GA</span>CY<br/></h1>
                 <!-- <p class="animated fadeInRightBig">Techniques don't produce quality products and services: People do, people who care,people who are treated as creatively contributing individuals</p> -->
                 <a data-scroll class="btn btn-start animated fadeInUpBig" href="#orders">Order now</a>
               </div>
@@ -72,7 +71,7 @@
             </div>
               
               <a class="navbar-brand" href="#">
-                <h1><img class="img-responsive" src="images/logo-home.png" alt="logo"></h1>
+                <h1>LE<span>GA</span>CY</h1>
               </a> 
             </div>
             <div class="collapse navbar-collapse">
@@ -260,7 +259,10 @@
     <div class="footer-top wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
       <div class="container text-center">
         <div class="footer-logo">
-          <a href="index.html"><img class="img-responsive" src="images/logo.png" alt=""></a>
+          <a href="index.html">
+              <h1>LE<span>GA</span>CY</h1>
+              <!-- <img class="img-responsive" src="images/logo.png" alt=""> -->
+          </a>
         </div>
         <div class="social-icons">
           <ul>

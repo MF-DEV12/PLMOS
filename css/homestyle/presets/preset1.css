@@ -34,21 +34,21 @@ a:hover, a:focus {
 .left-control:hover, 
 .right-control:hover, 
 .folio-overview a:hover {
-  background-color:#3f51b5;
+  background-color:#172052;
 }
 
 .twitter-left-control:hover, 
 .twitter-right-control:hover, 
 .btn-loadmore:hover  {
-	border: 1px solid #3f51b5;
+	border: 1px solid #172052;
 }
 
 .caption .btn-start:hover, 
 .left-control:hover, 
 .right-control:hover {
-	border-color: #3f51b5;
+	border-color: #172052;
 }
 
 .twitter-icon .fa-twitter:after {
-	border-color: #3f51b5 transparent transparent;
+	border-color: #172052 transparent transparent;
 }

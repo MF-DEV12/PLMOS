@@ -275,7 +275,17 @@ section {
 
 .navbar-brand h1 {
   margin-top: 5px;
+  color: white;
+  font-weight: bold;
+
 }
+.navbar-brand h1 span {
+ 
+  color: #f44336;
+  
+
+}
+
 
 /*************************
 ********Service CSS*******
@@ -430,7 +440,7 @@ section {
   margin-right: 5px;
 }
 .folio-item p {
-    background: #002f2b;
+    background: #172052;
     color: white;
     text-transform: uppercase;
     padding: 10px;
@@ -460,6 +470,15 @@ section {
     height: 300px;
 }
       
+.footer-logo h1{
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+.footer-logo h1 span{
+    color: #f44336; 
+}
+
 
 
 #portfolio .folio-item:hover .overlay {
