@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Login - Lampano Hardware</title>
+    <title>Login - <?=COMPANY_NAME;?></title>
     <link rel="stylesheet" type="text/css" href="<?=base_url('css/bootstrap/bootstrap.min.css');?>">
     <link rel="stylesheet" type="text/css" href="<?=base_url('css/form-element.css');?>">
     <link rel="stylesheet" type="text/css" href="<?=base_url('css/login.css');?>">
@@ -14,14 +14,17 @@
 
  <!-- Top content -->
 <div class="company-logo" align="center">
-    <img src="<?=base_url('images/logo.png')?>" width="250px">
+    <h1>LE<span>GA</span>CY</h1>
+    <!-- <img src="<?=base_url('images/logo.png')?>" width="250px"> -->
+    <p>Aluminum Glass and Construction Supply Inc.</p>
 </div>              
 <div class="box">
+
    <?php if($this->session->flashdata('error')) {?>
         <p class="label label-danger"><?=$this->session->flashdata('error');?></p> 
       <?php }?>
   <div id="header">
-  <h1 id="logintoregister">Login</h1>
+  <h1 id="logintoregister"  align="center">Login</h1>
  
   </div> 
 
@@ -42,9 +45,9 @@
     <button id="buttonlogintoregister" type="submit">Login</button>
 
   </form>
-  <div id="footer-box">
-  <!-- <p class="footer-text">Not a member?<span class="sign-up"> Sign up now</span></p> -->
-  </div>
+  <!-- <div id="footer-box">
+  <p class="footer-text">Not a member?<span class="sign-up"> Sign up now</span></p>
+  </div> -->
 </div>
    <!--      <div class="top-content">
             <div class="inner-bg">

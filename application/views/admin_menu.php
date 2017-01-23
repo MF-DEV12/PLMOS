@@ -1,6 +1,7 @@
   <div class='sidebar'>
     <div class='title'>
-      <img class="company-logo" src="<?=base_url('images/logo.png');?>" alt=""/> 
+      <h1>LE<span>GA</span>CY</h1>
+      <!-- <img class="company-logo" src="<?=base_url('images/logo.png');?>" alt=""/>  -->
     </div>
     <ul class='nav accordion' id="nav">
       <li data-content="dashboard" data-header="Dashboard">

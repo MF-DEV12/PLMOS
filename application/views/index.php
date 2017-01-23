@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
       
-    <title>Lampano Hardware</title>
+    <title><?=COMPANY_NAME?></title>
 
     <link rel="stylesheet" type="text/css" href="<?=base_url('css/bootstrap/bootstrap.min.css');?>">
     <link rel="stylesheet" type="text/css" href="<?=base_url('css/datatables/jquery.dataTables.css');?>">
@@ -160,11 +160,7 @@
     <script src="<?=base_url('js/scripts/admin.js');?>"></script>   
     <script src="<?=base_url('js/navside/main.js');?>"></script>   
 
-
-    <script src="<?=base_url('js/print/dataTables.buttons.min.js');?>"></script>    
-    <script src="<?=base_url('js/print/buttons.print.min.js');?>"></script>   
-
-     
+ 
 </body>
     
 </html>         

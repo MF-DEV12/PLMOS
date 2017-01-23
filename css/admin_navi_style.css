@@ -19,7 +19,7 @@ html, body {
 body {
   font: 12px/1 'Montserrat', sans-serif;
   color: #333;
-  background: #048e81;
+  background: #172052;
   overflow-x: hidden;
 }
 
@@ -67,7 +67,11 @@ body {
   letter-spacing: 7px;
   color: #eee;
   border-bottom: 1px solid #222;
-  background: #1f2f33;
+  font-weight:  bold; 
+  /*background: #1f2f33;*/
+}
+.title h1 span{
+  color:  #f44336;
 }
 
 #nav > li > a {
@@ -77,10 +81,10 @@ body {
   font-size: 12px;
   color: #eee;
 */
- background: #048e81;
+ background: #172052;
 /*border-bottom: 1px solid #009688;
 border-top: 1px solid #009688;*/
-box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #009688;
+box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #1a2561;
   color: #ddd;
   display: block;
   font-size: 13px;
@@ -95,11 +99,11 @@ box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #009688;
 }
 
 #nav > li > a:hover{
-   background: #048e81;
+   background: #172052;
   border-top-color: #009688;
   box-shadow: 
     inset -5px 0 0 #3a3a3a,
-    inset 0 20px 0 #009688
+    inset 0 20px 0 #1a2561
   ;
   color: #fff;
   outline: 0  ;
@@ -142,12 +146,12 @@ box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #009688;
 
  
 #nav > li >a:hover {
-  background: #048e81;
+  background: #172052;
 }
 
 #nav li a.active {
-  box-shadow: inset 5px 0 0 #f44336, inset 6px 0 0 #009688;
-  background: #334f56;
+  box-shadow: inset 5px 0 0 #f44336, inset 6px 0 0 #1a2561;
+  background: #0b102f;
   color:  white;
 }
 
@@ -155,7 +159,7 @@ box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #009688;
 h1 {
   margin: 25px 0 15px;
   font-size: 28px;
-  font-weight: 400;
+  font-weight: bold;
 }
 
 h2 {
@@ -170,8 +174,8 @@ ul.sub-menu {
 }
 
 ul.sub-menu li a { 
-       background: #30484c;
-    box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #30484c;
+       background: #0b102f;
+    box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #0b102f;
       border:   0px;
   color: #bbb;
   display: block;
@@ -185,11 +189,11 @@ ul.sub-menu li a {
   transition: all 300ms;
 }
 .sub-menu li a:hover{
-   background: #334f56;
+   background: #0b102f;
   border-top-color: #3a3a3a;
   box-shadow: 
     inset -5px 0 0 #3a3a3a,
-    inset 0 20px 0 #334f56
+    inset 0 20px 0 #0b102f
   ;
   color: #ddd;
   outline: 0  ;

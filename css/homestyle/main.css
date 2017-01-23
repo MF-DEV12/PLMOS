@@ -1369,3 +1369,9 @@ div.alert-success{
    border-top: 1px solid #ddd;
     padding: 8px;
 }
+
+.services-wrap > div {
+  height:  300px;
+  border: 1px solid #ddd;
+  padding:  0px 10px;
+}

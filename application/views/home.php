@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
       
-    <title>Legacy Aluminum Glass and Construction Supply - Home</title>
+    <title><?=COMPANY_NAME;?> - Home</title>
 
 
     <link href="<?=base_url('css/homestyle/bootstrap.min.css');?>" rel="stylesheet">
@@ -33,15 +33,15 @@
             </div>
             <div class="item" style="background-image: url(images/slider/2.jpg)">
               <div class="caption">
-                <h1 class="animated fadeInLeftBig"><span>Quality</span></h1>
-                <p class="animated fadeInRightBig">Techniques don't produce quality products and services <br/> People do, people who care, <br/>people who are treated as creatively contributing individuals</p>
+                <h1 class="animated fadeInLeftBig"><span>MISSION</span></h1>
+                <p class="animated fadeInRightBig">To provide architects and aluminum fabricators in particular and the construction industry in general with high quality, enviroment-friendly and value-added architectural glass products at competitive prices with short lead times using state-of-the-art glass designs; and to fulfill the needs and expectations of its employees, local community and other members of the supply chain in which it operates.</p>
                 <a data-scroll class="btn btn-start animated fadeInUpBig" href="#orders">Order now</a>
               </div>
             </div>
             <div class="item" style="background-image: url(images/slider/3.jpg)">
               <div class="caption">
-                <h1 class="animated fadeInLeftBig"><span>Value</span></h1>
-                <p class="animated fadeInRightBig">Successful companies create value by providing products or services their customers <br/>value more highly than available alternatives</p>
+                <h1 class="animated fadeInLeftBig"><span>VISION</span></h1>
+                <p class="animated fadeInRightBig">To become the leading glass processor in the region in terms of quality, delivery, service and technology.</p>
                 <a data-scroll class="btn btn-start animated fadeInUpBig" href="#orders">Order now</a>
               </div>
             </div>
@@ -77,7 +77,7 @@
             <div class="collapse navbar-collapse">
                <div class="action-holder" style="position: absolute;margin-left: 252px;">
 
-                  <div class="search-holder">    
+                  <!-- <div class="search-holder">    
                     <input type="text" name="search" class="form-control" placeholder="Search for items" > 
                     <span class="glyphicon glyphicon-search btn-itemsearch"></span> 
                      
@@ -87,7 +87,7 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                         <span class="badge countCart"><?=$totalItemCart?></span>
                     </button>
-                  </div>
+                  </div> -->
                   
                 </div>
 
@@ -105,9 +105,11 @@
 
               <ul class="nav navbar-nav navbar-right" style="z-index: 99999;">                 
                 <li class="scroll active"><a href="#home">Home</a></li>
-                <li class="scroll"><a href="#orders">Orders</a></li> 
+                <li class="scroll"><a href="#services">Services</a></li> 
+                <li class="scroll"><a href="#announcements">Announcements</a></li> 
                 <!-- <li class="scroll"><a href="#forums">Forums</a></li>                      -->
                 <!-- <li class="scroll"><a href="#about-us">About Us</a></li>      -->
+                <li class="scroll"><a href="#about">About us</a></li>   
                 <li class="scroll"><a href="#contact">Contact</a></li>   
              
                 <?php if($this->session->userdata("username")){ ?>    
@@ -198,6 +200,36 @@
       </div>
     </div> 
 </section>  
+<section id="services">
+    <div class="container" align="center">
+       <h1>Services</h1> 
+       <div class="row services-wrap">
+          <div class="col-sm-3">
+             <i class="icon-paperplane_ico icon2x"></i>
+             <h3>What We Buy</h3>
+             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+             </p>
+          </div>
+          <div class="col-sm-3">
+             <i class="icon-star icon2x"></i>
+             <h3>What We Sell</h3>
+             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+             </p>
+          </div>
+          <div class="col-sm-3">
+             <i class="icon-message icon2x"></i>
+             <h3>Bid Opportunities</h3>
+             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+             </p>
+          </div>
+          
+       </div>
+    </div>
+  
+</section> 
+<section id="whatwebuy">
+  
+</section> 
 
 
 <section id="contact">
@@ -206,8 +238,7 @@
       <div class="container">
         <div class="row">
           <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h2>Contact Us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p>
+            <h2>Contact Us</h2> 
           </div>
         </div>
         <div class="contact-form wow fadeIn" data-wow-duration="1000ms" data-wow-delay="600ms">
@@ -239,12 +270,12 @@
             </div>
             <div class="col-sm-6">
               <div class="contact-info wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
+                <h2>Get in touch!</h2>
                 <ul class="address">
-                  <li><i class="fa fa-map-marker"></i> <span> Address:</span> at 22 General Luis Novaliches, Quezon City, Metro Manila </li>
-                  <li><i class="fa fa-phone"></i> <span> Phone:</span> +928 123 4567  </li>
+                  <li><i class="fa fa-map-marker"></i> <span> Address:</span> Legacy Building, 118 Tunasan National Road, Muntinlupa, 1773</li>
+                  <li><i class="fa fa-phone"></i> <span> Phone:</span> (02) 861-8286, (02) 986-7372, Globe: 0927-3098165  </li>
                   <li><i class="fa fa-envelope"></i> <span> Email:</span><a href="mailto:someone@yoursite.com"> support@lhs.com</a></li>
-                  <li><i class="fa fa-globe"></i> <span> Website:</span> <a href="#">www.lampanohardware.com</a></li>
+                  <li><i class="fa fa-globe"></i> <span> Website:</span> <a href="#">www.legacy.com</a></li>
                 </ul>
               </div>                            
             </div>
@@ -280,7 +311,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <p>&copy; 2016 Lampano Hardware.</p>
+            <p>&copy;2017 <?=COMPANY_NAME;?> </p>
           </div>
           <div class="col-sm-6">
           </div>

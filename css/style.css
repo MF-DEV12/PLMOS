@@ -225,7 +225,7 @@ span.badge {
 } 
 
 .table-custom  thead td {
-    color: #048e81;
+    color: #172052;
     padding: 12px;
 }
 .table-custom tbody td {
@@ -303,7 +303,7 @@ table[data-table=categories] td:hover span.tr-action{
 .bootstrap-tagsinput .label.tag {
     font-size: 12px !important;
     font-weight: 100 !important;
-    background-color: #048e81;
+    background-color: #172052;
 }
 .bootstrap-tagsinput input {
     font-size: 12px !important;
@@ -397,8 +397,8 @@ dl#list-status dd{
     height: 85px;
     width: 200px;
     background: white;
-    background: #009688;
-    box-shadow: inset -0px 0 0 hsla(0, 0%, 0%, .2), inset 0 41px 0 #048e81;
+    background: #172052;
+    box-shadow: inset -0px 0 0 hsla(0, 0%, 0%, .2), inset 0 41px 0 #172052;
     color: white;
 }
 dl#list-status dd h2{
@@ -431,7 +431,7 @@ dl#list-status dd:first-child{
     margin-bottom: 0px !important ;
 }
 .list-ordereditems dl dd .progress-bar{
-  background-color:  #009688 !important ; 
+  background-color:  #172052 !important ; 
 
 }
 
@@ -477,8 +477,8 @@ dl#list-status dd h2{
 
 /*BUTTON STYLE*/
 .btn-action{
-     background: #009688;
-    border: 1px solid #009688;
+     background: #f44336;
+    border: 1px solid #f44336;
     color: white;
     cursor: pointer;
     z-index: 4;
@@ -524,8 +524,8 @@ div.table-group{
 }
 
 .main-table thead th {
-    background: #293d42;
-    box-shadow: inset -0px 0 0 hsla(0, 0%, 0%, 0.2), inset 0 20px 0 #30484c;
+    background: #172052;
+    box-shadow: inset -0px 0 0 hsla(0, 0%, 0%, 0.2), inset 0 20px 0 #1a2561;
     font-size: 14px !important;
     color: white;
     border-right: 1px solid;
