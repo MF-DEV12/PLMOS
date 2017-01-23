@@ -270,7 +270,7 @@ section {
 }
 
 .navbar-right li.active a {
-  background-color: rgba(0,0,0,.2);
+  background-color: rgba(0,0,0,.5);
 }
 
 .navbar-brand h1 {
@@ -333,7 +333,7 @@ section {
 ********About CSS*******
 **************************/
 #about-us {
-  background-image: url(../images/about-bg.jpg);
+  background-image: url(images/about-bg.jpg);
   padding: 60px 0;
 }
 
@@ -379,17 +379,17 @@ section {
 ********portfolio CSS*****
 **************************/
 
-#portfolio .container-fluid, 
-#portfolio .col-sm-3  {
+#products .container-fluid, 
+#products .col-sm-3  {
   overflow: hidden;
   padding: 0;
 }
 
-#portfolio .folio-item {
+#products .folio-item {
   position: relative;
 }
 
-#portfolio .overlay {
+#products .overlay {
   background-color: #000;
   color: #fff; 
   left: 0;
@@ -460,7 +460,7 @@ section {
   transition: all 0.8s ease-in-out;
 }
 
-#portfolio .folio-item:hover .folio-image {
+#products .folio-item:hover .folio-image {
   -webkit-transform: scale(1.5) rotate(-15deg);
   transform: scale(1.5) rotate(-15deg);
 }
@@ -481,18 +481,18 @@ section {
 
 
 
-#portfolio .folio-item:hover .overlay {
+#products .folio-item:hover .overlay {
   opacity: 0.8;
   bottom: 0;
   height: 100%;
 }
 
-#portfolio .folio-item:hover .folio-overview .folio-expand {
+#products .folio-item:hover .folio-overview .folio-expand {
   margin-top: 0;
   margin-left:0;
 }
 
-#portfolio .folio-item:hover .overlay .folio-info {
+#products .folio-item:hover .overlay .folio-info {
   opacity: 1;  
   margin-bottom:0;
   margin-top:0;

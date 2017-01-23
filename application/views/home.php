@@ -28,13 +28,13 @@
               <div class="caption">
                 <h1 class="animated fadeInLeftBig">Welcome to <br/>LE<span>GA</span>CY<br/></h1>
                 <!-- <p class="animated fadeInRightBig">Techniques don't produce quality products and services: People do, people who care,people who are treated as creatively contributing individuals</p> -->
-                <a data-scroll class="btn btn-start animated fadeInUpBig" href="#orders">Order now</a>
+                <a data-scroll class="btn btn-start animated fadeInUpBig" href="#products">Order now</a>
               </div>
             </div>
             <div class="item" style="background-image: url(images/slider/2.jpg)">
               <div class="caption">
                 <h1 class="animated fadeInLeftBig"><span>MISSION</span></h1>
-                <p class="animated fadeInRightBig">To provide architects and aluminum fabricators in particular and the construction industry in general with high quality, enviroment-friendly and value-added architectural glass products at competitive prices with short lead times using state-of-the-art glass designs; and to fulfill the needs and expectations of its employees, local community and other members of the supply chain in which it operates.</p>
+                <p class="animated fadeInRightBig">To provide architects and aluminum fabricators in particular and the construction industry in general with high quality,<br/> enviroment-friendly and value-added architectural glass products at competitive prices with short lead times <br/> using state-of-the-art glass designs; and to fulfill the needs and expectations of its employees, <br/>local community and other members of the supply chain in which it operates.</p>
                 <a data-scroll class="btn btn-start animated fadeInUpBig" href="#orders">Order now</a>
               </div>
             </div>
@@ -105,11 +105,11 @@
 
               <ul class="nav navbar-nav navbar-right" style="z-index: 99999;">                 
                 <li class="scroll active"><a href="#home">Home</a></li>
+                <li class="scroll"><a href="#products">Products</a></li> 
                 <li class="scroll"><a href="#services">Services</a></li> 
-                <li class="scroll"><a href="#announcements">Announcements</a></li> 
+                <!-- <li class="scroll"><a href="#announcements">Announcements</a></li>  -->
                 <!-- <li class="scroll"><a href="#forums">Forums</a></li>                      -->
                 <!-- <li class="scroll"><a href="#about-us">About Us</a></li>      -->
-                <li class="scroll"><a href="#about">About us</a></li>   
                 <li class="scroll"><a href="#contact">Contact</a></li>   
              
                 <?php if($this->session->userdata("username")){ ?>    
@@ -164,72 +164,175 @@
       <input type="text" placeholder="Search for items.." class="form-control"/>
       <span class="glyphicon glyphicon-search btn-itemsearch"></span> 
     </div>
-<section id="orders">
+
+
+<section id="products">
     <div class="container">
       <div class="row">
         <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-          <h2>List of Categories</h2>
-          <p>Select the Categories</p>
+          <h2>Our Products</h2>
+          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p> -->
         </div>
       </div> 
     </div>
-    <div class="container-fluid" align="center">
-      <div class="row" align="center">
+    <div class="container">
+      <div class="row">
+        <?php $ctr = 0;?>
         <?php foreach($family as $key) {?>
+        <?php $animate = ($ctr % 2 == 0) ? "fadeInRightBig" : "fadeInLeftBig";?>
+        <?php $ctr++;?>
+
               <div class="col-sm-3">
-                <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+                <div class="folio-item wow <?=$animate;?>" data-wow-duration="1000ms" data-wow-delay="300ms">
                   <div class="folio-image">
-                    <a href="<?=base_url('items?family='.$key->Level1No);?>"> 
                     <img class="img-responsive" src="<?=base_url('images/variant-folder/' . $key->ImageFile);?>" alt="" onerror="this.src='images/noimage.gif';">
-                    </a>
-                  </div> 
-                  <p><?=$key->Name1;?></p>
+                  </div>
+                  <div class="overlay">
+                    <div class="overlay-content">
+                      <div class="overlay-text">
+                        <div class="folio-info">
+                          <h3><?=$key->Name1;?></h3>
+                        </div>
+                        <div class="folio-overview">
+                          <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span>
+                          <span class="folio-expand"><a href="<?=base_url('images/variant-folder/' . $key->ImageFile);?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-        <?php } ?>
+              </div>  
+               
+        <?php } ?>  
 
       
-        
-      </div>
-      <div class="load-more wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="500ms">
-          <a  class="btn-loadmore"><i class="fa fa-repeat"></i> Load More</a>
-      </div> 
+         
     </div>
     <div id="portfolio-single-wrap">
       <div id="portfolio-single">
       </div>
-    </div> 
-</section>  
+    </div><!-- /#portfolio-single-wrap -->
+</section>
+
 <section id="services">
-    <div class="container" align="center">
-       <h1>Services</h1> 
-       <div class="row services-wrap">
-          <div class="col-sm-3">
-             <i class="icon-paperplane_ico icon2x"></i>
-             <h3>What We Buy</h3>
-             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-             </p>
+    <div class="container">
+      <div class="row">
+        <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+          <h2>Services</h2>
+        </div>
+      </div>
+      <div class="pricing-table">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <h3>What we Buy</h3>
+              <div class="price">
+                $9<span>/Month</span>                          
+              </div>
+              <ul>
+                <li>Free Setup</li>
+                <li>10GB Storage</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li>
+              </ul>
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
           </div>
-          <div class="col-sm-3">
-             <i class="icon-star icon2x"></i>
-             <h3>What We Sell</h3>
-             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-             </p>
+          <div class="col-sm-4">
+            <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="500ms">
+              <h3>What we Sell</h3>
+              <div class="price">
+                $19<span>/Month</span>                                
+              </div>
+              <ul>
+                <li>Free Setup</li>
+                <li>10GB Storage</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li>
+              </ul>
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
           </div>
-          <div class="col-sm-3">
-             <i class="icon-message icon2x"></i>
-             <h3>Bid Opportunities</h3>
-             <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
-             </p>
+          <div class="col-sm-4">
+            <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="800ms">
+              <h3>Bid Opportunities</h3>
+              <div class="price">
+                $29<span>/Month</span>                                
+              </div>
+              <ul>
+                <li>Free Setup</li>
+                <li>10GB Storage</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li>
+              </ul>
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
           </div>
           
-       </div>
+        </div>
+      </div>
     </div>
-  
-</section> 
-<section id="whatwebuy">
-  
-</section> 
+</section>
+<!--   
+<section id="announcements">
+    <div class="container">
+      <div class="row">
+        <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1200ms" data-wow-delay="300ms">
+          <h2>Services</h2>
+        </div>
+      </div>
+      <div class="pricing-table">
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="single-table wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <h3>What we Buy</h3>
+              <div class="price">
+                $9<span>/Month</span>                          
+              </div>
+              <ul>
+                <li>Free Setup</li>
+                <li>10GB Storage</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li>
+              </ul>
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="single-table wow flipInY" data-wow-duration="1000ms" data-wow-delay="500ms">
+              <h3>What we Sell</h3>
+              <div class="price">
+                $19<span>/Month</span>                                
+              </div>
+              <ul>
+                <li>Free Setup</li>
+                <li>10GB Storage</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li>
+              </ul>
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="800ms">
+              <h3>Bid Opportunities</h3>
+              <div class="price">
+                $29<span>/Month</span>                                
+              </div>
+              <ul>
+                <li>Free Setup</li>
+                <li>10GB Storage</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li>
+              </ul>
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+</section>   -->
 
 
 <section id="contact">
