@@ -86,4 +86,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 
-define('COMPANY_NAME', "Legacy Aluminum Glass And Construction Supply Inc."); // highest automatically-assigned error code
+define('COMPANY_NAME', "Legacy Aluminum, Glass And Construction Supply Inc."); // highest automatically-assigned error code

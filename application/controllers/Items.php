@@ -9,7 +9,9 @@ class Items extends CI_Controller {
  	}
 
  	function index(){
-
+		$data['username'] = $this->session->userdata("username");
+		$data['role'] = $this->session->userdata("role");
+		$data['name'] = $this->session->userdata("name");
  		$level1no = $this->input->get("family");
  		$level2no = $this->input->get("category");
  		$level3no = $this->input->get("subcategory");
@@ -165,6 +167,9 @@ class Items extends CI_Controller {
  	// VIEW ITEMS
 
  	function view(){
+		$data['username'] = $this->session->userdata("username");
+		$data['role'] = $this->session->userdata("role");
+		$data['name'] = $this->session->userdata("name");
  		$item = $this->input->get("id"); 
 		$level1no = $this->input->get("family");
  		$level2no = $this->input->get("category");

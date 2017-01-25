@@ -1166,7 +1166,7 @@ button#btn-proceed{
 
 div.item-holder:hover + div button.btn-buy, button.btn-buy:hover{
   color:white;
-  background: #048e81;
+  background: #172052;
   transition: background 0.5s ease;
 }
 
@@ -1360,9 +1360,9 @@ div.chk-termcondition input{
 }
 
 div.alert-success{
-  color: #048e81 !important;
-  background-color:  #c8efeb !important;
-  border-color:  #c8efeb !important;
+  color: #172052 !important;
+  background-color:  #dee3ff !important;
+  border-color:  #dee3ff !important;
 }
 
 .navbar-footer{

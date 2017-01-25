@@ -1,12 +1,13 @@
 <header id="home">
          
         <div class="main-nav">
-          <div class="container customer-header" >
+          <div class="container customer-header" > 
             <div class="navbar-header">
              
              
               <a class="navbar-brand" href="<?=base_url();?>">
-                <h1><img class="img-responsive" src="<?=base_url('images/logo-home.png');?>" alt="logo"></h1>
+               <h1>LE<span>GA</span>CY</h1>
+                <!-- <h1><img class="img-responsive" src="<?=base_url('images/logo-home.png');?>" alt="logo"></h1> -->
               </a>   
 
             </div>

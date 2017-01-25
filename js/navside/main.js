@@ -45,7 +45,7 @@ jQuery(document).ready(function($){
         		$("button#btn-submititemvariant").addClass("disabled")
         }
 
-        document.title = 'Lampano Hardware - '  + li.data("header");
+        document.title =  li.data("header") + " - "  + $("#company-title").val() ;
 
         // RESET PAGE 
         var currentList = $("div.content .content-group.show .content-list.show")

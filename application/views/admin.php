@@ -81,7 +81,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername">
+                                              <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Supplier name:</label>
@@ -94,7 +94,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="text"  name="Address" id="txt-address">
+                                              <input class="inputMaterial" type="text"  name="Address" id="txt-address" required>
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Address:</label>
@@ -107,7 +107,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="text" name="ContactNo" id="txt-contact" >
+                                              <input class="inputMaterial" type="text" name="ContactNo" id="txt-contact" required>
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Contact:</label>
@@ -119,7 +119,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="text" name="Email" id="txt-email">
+                                              <input class="inputMaterial" type="text" name="Email" id="txt-email" required>
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Email Address:</label>
@@ -131,7 +131,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="text" name="Username" id="txt-username">
+                                              <input class="inputMaterial" type="text" name="Username" id="txt-username" required> 
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Username:</label>
@@ -143,7 +143,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="password" name="Password" id="txt-password" >
+                                              <input class="inputMaterial" type="password" name="Password" id="txt-password" required>
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Password:</label>
@@ -155,7 +155,7 @@
                                     <tr>
                                         <td>
                                             <div class="group">      
-                                              <input class="inputMaterial" type="password" id="txt-confirmpassword">
+                                              <input class="inputMaterial" type="password" id="txt-confirmpassword" required>
                                               <span class="highlight"></span>
                                               <span class="bar"></span>
                                               <label class="formlabel">Confirm Password:</label>

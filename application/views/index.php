@@ -20,7 +20,7 @@
 </head>
 <body>
     
- 
+    <input type="hidden" id="company-title" value="<?=COMPANY_NAME?>">
 
     <div class='wrapper'> 
      <?php $this->load->view("admin_menu");?> 

@@ -223,40 +223,47 @@
       </div>
       <div class="pricing-table">
         <div class="row">
-          <div class="col-sm-4">
-            <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
-              <h3>What we Buy</h3>
-              <div class="price">
-                $9<span>/Month</span>                          
-              </div>
-              <ul>
-                <li>Free Setup</li>
-                <li>10GB Storage</li>
-                <li>100GB Bandwith</li>
-                <li>5 Products</li>
-              </ul>
-              <a href="#" class="btn btn-lg btn-primary">View</a>
-            </div>
-          </div>
+          
           <div class="col-sm-4">
             <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="500ms">
+              <h3 style="font-size: 110px;"><i class="fa fa-sellsy" aria-hidden="true"></i></h3>
               <h3>What we Sell</h3>
-              <div class="price">
+              <!-- <div class="price">
                 $19<span>/Month</span>                                
-              </div>
-              <ul>
+              </div> -->
+             <!--  <ul>
+                <li>Discounted Items</li>
+                <li>Common-Use Items</li>
+                <li>100GB Bandwith</li>
+                <li>5 Products</li> 
+              </ul> -->
+              <a href="#" class="btn btn-lg btn-primary">View</a>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <h3 style="font-size: 110px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i></h3>
+              <h3>What we Buy</h3>
+             <!--  <div class="price">
+                $9<span>/Month</span>                          
+              </div> -->
+             <!--  <ul>
                 <li>Free Setup</li>
                 <li>10GB Storage</li>
                 <li>100GB Bandwith</li>
                 <li>5 Products</li>
-              </ul>
+              </ul> -->
               <a href="#" class="btn btn-lg btn-primary">View</a>
             </div>
           </div>
+
+
           <div class="col-sm-4">
             <div class="single-table featured wow flipInY" data-wow-duration="1000ms" data-wow-delay="800ms">
+              <h3 style="font-size: 110px;"><i class="fa fa-users" aria-hidden="true"></i></h3>
               <h3>Bid Opportunities</h3>
-              <div class="price">
+              <!-- <div class="price">
                 $29<span>/Month</span>                                
               </div>
               <ul>
@@ -264,8 +271,8 @@
                 <li>10GB Storage</li>
                 <li>100GB Bandwith</li>
                 <li>5 Products</li>
-              </ul>
-              <a href="#" class="btn btn-lg btn-primary">View</a>
+              </ul> -->
+              <a href="#" class="btn btn-lg btn-primary">Bid Now</a>
             </div>
           </div>
           
