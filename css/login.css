@@ -6,7 +6,7 @@ html,body{
   /*background-image: url(../images/bg.jpg);
   background-repeat: no-repeat;
   background-size: 100% auto;*/
-   background: url(../images/bg.jpg) no-repeat center center fixed;
+   /*background: url(../images/bg.jpg) no-repeat center center fixed;*/
      -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -22,7 +22,7 @@ html,body{
 .box{
     position: absolute;
     margin: auto;
-    height: 320px;
+    /*height: 320px;*/
   top: 225px;
     left: 0;
     z-index: 200;

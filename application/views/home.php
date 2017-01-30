@@ -75,9 +75,9 @@
               </a> 
             </div>
             <div class="collapse navbar-collapse">
-               <div class="action-holder" style="position: absolute;margin-left: 252px;">
+               <div class="action-holder" style="position: absolute;margin-left: 192px;">
 
-                  <!-- <div class="search-holder">    
+                  <div class="search-holder">    
                     <input type="text" name="search" class="form-control" placeholder="Search for items" > 
                     <span class="glyphicon glyphicon-search btn-itemsearch"></span> 
                      
@@ -87,7 +87,7 @@
                         <span class="glyphicon glyphicon-shopping-cart"></span>
                         <span class="badge countCart"><?=$totalItemCart?></span>
                     </button>
-                  </div> -->
+                  </div>
                   
                 </div>
 
@@ -105,7 +105,7 @@
 
               <ul class="nav navbar-nav navbar-right" style="z-index: 99999;">                 
                 <li class="scroll active"><a href="#home">Home</a></li>
-                <li class="scroll"><a href="#products">Products</a></li> 
+                <li class="scroll"><a href="#products">Gallery</a></li> 
                 <li class="scroll"><a href="#services">Services</a></li> 
                 <!-- <li class="scroll"><a href="#announcements">Announcements</a></li>  -->
                 <!-- <li class="scroll"><a href="#forums">Forums</a></li>                      -->
@@ -170,13 +170,16 @@
     <div class="container">
       <div class="row">
         <div class="heading text-center col-sm-8 col-sm-offset-2 wow fadeInUp" data-wow-duration="1000ms" data-wow-delay="300ms">
-          <h2>Our Products</h2>
+          <h2>Our Gallery</h2>
           <!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua ut enim ad minim veniam</p> -->
         </div>
       </div> 
     </div>
-    <div class="container">
+    <div class="container-fluid">
       <div class="row">
+
+
+<!-- 
         <?php $ctr = 0;?>
         <?php foreach($family as $key) {?>
         <?php $animate = ($ctr % 2 == 0) ? "fadeInRightBig" : "fadeInLeftBig";?>
@@ -204,6 +207,177 @@
               </div>  
                
         <?php } ?>  
+ -->
+         <div class="col-sm-3">
+            <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/1.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>Mulson Trading Cupang Muntinlupa</h3>
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/1.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/2.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>Pasay City Science High School</h3> 
+                      <span>(curtainwall w blue reflective glass)</span>
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/2.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/3.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>Ayala Westgrove House</h3> 
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/3.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/4.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>TESDA Muntinlupa CIty</h3> 
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/4.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+        <!--  -->
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/5.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>NAIA Fire and Rescue Bldg</h3>
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/5.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInLeftBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/6.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>Commission on Audit Bldg Commonwealth QC</h3> 
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/6.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/7.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>Ospital ng Muntinlupa</h3> 
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/7.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+
+          <div class="col-sm-3">
+            <div class="folio-item wow fadeInRightBig" data-wow-duration="1000ms" data-wow-delay="300ms">
+              <div class="folio-image">
+                <img class="img-responsive" src="<?=base_url('images/gallery/8.jpg');?>" alt="" onerror="this.src='images/noimage.gif';">
+              </div>
+              <div class="overlay">
+                <div class="overlay-content">
+                  <div class="overlay-text">
+                    <div class="folio-info">
+                      <h3>Paranaque Doctors Hospital</h3> 
+                    </div>
+                    <div class="folio-overview">
+                      <!-- <span class="folio-link"><a class="folio-read-more" href="#" data-single_url="<?=base_url('items?family='.$key->Level1No);?>" ><i class="fa fa-link"></i></a></span> -->
+                      <span class="folio-expand"><a href="<?=base_url('images/gallery/8.jpg');?>" data-lightbox="portfolio"><i class="fa fa-search-plus"></i></a></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
 
       
          
@@ -237,7 +411,7 @@
                 <li>100GB Bandwith</li>
                 <li>5 Products</li> 
               </ul> -->
-              <a href="#" class="btn btn-lg btn-primary">View</a>
+              <a href="<?=base_url('items?for=1');?>" class="btn btn-lg btn-primary">View</a>
             </div>
           </div>
 
@@ -254,7 +428,7 @@
                 <li>100GB Bandwith</li>
                 <li>5 Products</li>
               </ul> -->
-              <a href="#" class="btn btn-lg btn-primary">View</a>
+              <a href="<?=base_url('items?for=2');?>" class="btn btn-lg btn-primary">View</a>
             </div>
           </div>
 
@@ -343,7 +517,7 @@
 
 
 <section id="contact">
-    <div id="google-map" class="wow fadeIn" data-latitude="14.7202842" data-longitude="121.01659" data-wow-duration="1000ms" data-wow-delay="400ms"></div>
+    <div id="google-map" class="wow fadeIn" data-latitude="14.380338" data-longitude="121.045413" data-wow-duration="1000ms" data-wow-delay="400ms"></div>
     <div id="contact-us" class="parallax">
       <div class="container">
         <div class="row">
@@ -436,7 +610,7 @@
       <script type="text/javascript" src="<?=base_url("js/homestyle/bootstrap.min.js")?>"></script>
       <script type="text/javascript" src='<?=base_url("js/utility/ajaxCall.js")?>'></script>
  
-      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=<?=GPS_API;?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.inview.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/wow.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/mousescroll.js")?>"></script>

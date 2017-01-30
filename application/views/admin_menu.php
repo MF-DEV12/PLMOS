@@ -9,19 +9,24 @@
       </li>
 
       <?php if($role == "admin"){?>
-              <li data-menu="supplier">
-                <a data-toggle="collapse" data-target="#supplierorder" data-parent="#nav">Order to Supplier</a>
+              <!-- <li data-menu="supplier">
+                <a data-toggle="collapse" data-target="#supplierorder" data-parent="#nav">Supplier's Order</a>
                 <ul id="supplierorder" class="collapse sub-menu">
-                    <li  data-content="purchaseorder" data-header="Purchase Orders"><a href="#">Purchase Order</a></li>
-                    <li data-content="receivings" data-header="Receiving Orders"><a href="#">Receiving Orders</a></li>
-                    <li data-content="backorders" data-header="Back Orders"><a href="#">Back Orders</a></li>
+                    <li data-content="purchaseorder" data-header="Purchase Orders"><a href="#">List of Orders</a></li>
                     <li data-content="suppliers" data-header="Suppliers"><a href="#">Suppliers</a></li>
                 </ul>
+              </li> -->
+              <li data-content="supplier" data-menu="supplier" data-header="Supplier's Order">
+                <a>Supplier's Order</a>
+              </li>
+              <li data-content="allorders" data-header="Customer's Order">
+                <a>Customer's Order</a>
               </li>
               
               <li data-menu="inventory">
                 <a data-toggle="collapse" data-target="#inventory" data-parent="#nav">Inventory</a>
                 <ul id="inventory" class="collapse sub-menu">
+                    <li data-content="additems"><a href="#" data-header="Add Items">Add Items</a></li>
                     <li data-content="items" data-header="Items"><a href="#">Item Master</a></li>
                     <li data-content="inventory" data-header="Inventory"><a href="#">Inventory</a></li>
                     <li data-content="lowstocks" data-header="Low and Critical Stocks"><a href="#">Low / Critical Stocks</a></li>
@@ -29,9 +34,7 @@
                     <li data-content="removeditems" data-header="Removed Items"><a href="#">Removed Items</a></li>
                 </ul>
               </li>
-              <li data-content="allorders" data-header="Customer's Order">
-                <a>Customer's Order</a>
-              </li>
+              
                <li data-menu="reports">
                 <a data-toggle="collapse" data-target="#reports" data-parent="#nav">Reports</a>
                 <ul id="reports" class="collapse sub-menu">

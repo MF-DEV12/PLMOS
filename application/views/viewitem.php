@@ -56,7 +56,7 @@
           <h5>Item Specification:</h5>
           <dl id="items-specs">
             <dd style="border-bottom: 1px solid #ddd;">
-              <ul>
+              <ul class="variantname">
                  <?php $variantname = json_decode($items->VariantNameJSON);?>
                  <?php foreach($variantname as $key => $value){ ?> 
                   <li><?=$key?> : <?=$value;?></li>
@@ -68,7 +68,7 @@
                 <h6>Choose a Variation:</h6>
                 <dl id="list-variation"> 
                    <?php foreach($itemvariant as $key){ ?> 
-                      <dd data-item="<?=$key->ItemNo?>" data-price="<?=$key->Price?>" data-variant="<?=$key->VariantNo?>"<?=(($items->ItemNumber == $key->ItemNo . "-" . $key->VariantNo) ? "class=\"active\"" : "");?>> <img src="<?=base_url('images/variant-folder/'. $key->ImageFile);?>" alt="" width="80px" height="80px"/></dd>
+                      <dd data-item="<?=$key->ItemNo?>" data-price="<?=$key->Price?>" data-variant="<?=$key->VariantNo?>"<?=(($items->ItemNumber == $key->ItemNo . "-" . $key->VariantNo) ? "class=\"active\"" : "");?> data-variantname='<?=str_replace('"',"\"",$key->VariantNameJSON);?>'> <img src="<?=base_url('images/variant-folder/'. $key->ImageFile);?>" alt="" width="80px" height="80px"/></dd>
                    <?php } ?> 
                 </dl>
               </dd>
@@ -172,7 +172,6 @@
       <script type="text/javascript" src='<?=base_url("js/maskMoney.js")?>'></script>
       <script type="text/javascript" src='<?=base_url("js/utility/helpers.js")?>'></script>
  
-      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.inview.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/wow.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/mousescroll.js")?>"></script>
@@ -183,15 +182,7 @@
       <script type="text/javascript" src="<?=base_url("js/side-menu/side-menu.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/customerorder.js")?>"></script>
 
-      <!-- <script type="text/javascript">
-         $('#responsive-menu-button').sidr({
-            name: 'sidr-main',
-            source: '#navigation',
-            side: 'left'
-          });
-      </script> -->
-
-
+    
  
      
 </body>

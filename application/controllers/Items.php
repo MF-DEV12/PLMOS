@@ -15,6 +15,12 @@ class Items extends CI_Controller {
  		$level1no = $this->input->get("family");
  		$level2no = $this->input->get("category");
  		$level3no = $this->input->get("subcategory");
+ 		$itemfor = $this->input->get("for");
+ 		if(isset($itemfor))
+ 			$this->session->set_userdata('itemfor',$itemfor);
+ 		else
+ 			$this->session->unset_userdata('itemfor');
+
  		$item = $this->input->get("name");
  		$data["family"] = ($level1no) ? $this->getFamilyName($level1no) : array();
  		$data["category"] = ($level2no) ? $this->getCategoryName($level2no) : array();
@@ -124,6 +130,7 @@ class Items extends CI_Controller {
 
  	function getItems(){
  		$data = $this->input->post("id");
+ 	 
  		 
 		echo json_encode($this->getItemsForSale($data)); 
  	}
@@ -131,7 +138,8 @@ class Items extends CI_Controller {
  	function getItemsForSale($id){
  		$data = $id; 
  		$data = json_decode($data);
- 		 
+ 		$itemfor = $this->session->userdata("itemfor");
+ 		$itemfor = ($itemfor) ? $itemfor : "";
  		$this->param = $this->param = $this->query_model->param; 
  		$this->param["table"] = "vw_itemsforsale";
  		$this->param["fields"] = "*";
@@ -146,12 +154,17 @@ class Items extends CI_Controller {
 
 		if(isset($data->name))
 			$this->param["conditions"] .= " Name like '%$data->name%'";
-
+		if($itemfor!="")
+			$this->param["conditions"] .= (($this->param["conditions"] != "") ? " AND " : "") ." ItemFor = $itemfor ";
 
 		$this->param["groups"] = "ItemNo, ItemNoV";
 		$this->param["order"] = "Name";
 		 
-		return $this->query_model->getData($this->param);
+		$result =  $this->query_model->getData($this->param);
+
+
+		// die($this->db->last_query());
+		return $result;
  	}
 
  	function getItemVariant($item){ 
@@ -281,6 +294,7 @@ class Items extends CI_Controller {
  	  	$data['username'] = $this->session->userdata("username");
 		$data['role'] = $this->session->userdata("role");
 		$data['name'] = $this->session->userdata("name");
+		$data['for'] = $this->session->userdata("itemfor");
  		$data["listfamily"] = $this->getListFamily();
  		$data["listcategory"] = $this->getCategoryByFamily();
  		$data["listsubcategory"] = $this->getSubCategory();

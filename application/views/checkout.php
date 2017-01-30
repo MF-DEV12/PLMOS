@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
       
-    <title>Lampano Hardware - Checkout</title>
+    <title><?=COMPANY_NAME;?> - Checkout</title>
 
 
     <link href="<?=base_url('css/homestyle/bootstrap.min.css');?>" rel="stylesheet">
@@ -102,7 +102,8 @@
           <?php } ?>   
          </div>
           <div class="row customer-form <?=(($customer) ? 'login' : '');?>">
-           
+              
+              <input type="hidden" id="itemfor" value="<?=$for;?>"/>
               <div class="col-sm-12 col-lg-6">
                 <div class="group">      
                     <input class="inputMaterial" type="text" id="txt-lastname" value="<?=$lastname;?>" required  <?=$readonly?>>
@@ -119,6 +120,15 @@
                     <label class="formlabel">First name:</label>
                 </div>
               </div>
+              <div class="col-sm-12 col-lg-12">
+                <div class="group">      
+                    <input class="inputMaterial" type="text"  id="txt-company" value="<?=$firstname;?>" required <?=$readonly?>>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label class="formlabel">Company Name:</label>
+                </div>
+              </div> 
+
               <div class="col-sm-12 col-lg-6">
                 <div class="group">      
                     <input class="inputMaterial" type="text"  id="txt-contact"  value="<?=$contact;?>" required <?=$readonly?>>
@@ -238,7 +248,6 @@
       <script type="text/javascript" src='<?=base_url("js/bootbox.min.js")?>'></script>
       <script type="text/javascript" src='<?=base_url("js/utility/helpers.js")?>'></script>
  
-      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.inview.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/wow.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/mousescroll.js")?>"></script>
@@ -249,14 +258,7 @@
       <script type="text/javascript" src="<?=base_url("js/side-menu/side-menu.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/customerorder.js")?>"></script>
 
-      <script type="text/javascript">
-         $('#responsive-menu-button').sidr({
-            name: 'sidr-main',
-            source: '#navigation',
-            side: 'left'
-          });
-      </script>
-
+      
 
  
      

@@ -166,7 +166,7 @@ jQuery(function($) {
 		if($("#google-map").length == 0) {return;}
 		var myLatlng = new google.maps.LatLng(latitude,longitude);
 		var mapOptions = {
-			zoom: 14,
+			zoom: 16,
 			scrollwheel: false,
 			center: myLatlng
 		};
@@ -183,7 +183,9 @@ jQuery(function($) {
 			infowindow.open(map,marker);
 		});
 	}
-	google.maps.event.addDomListener(window, 'load', initialize_map);
+	
+	if($("#google-map").length)  
+		google.maps.event.addDomListener(window, 'load', initialize_map);
 	
 });
 

@@ -84,14 +84,14 @@ $(function(){
 	            $(select).html($(select).children('option').sort(function (x, y) {
 	                return $(x).text().toUpperCase() < $(y).text().toUpperCase() ? -1 : 1;
 	            }));
-	    		select.prepend("<option value=\"\" disabled selected>Select one</option>") 
+	    		select.prepend("<option value=\"\" disabled selected></option>") 
 	            $(select).get(0).selectedIndex = 0;
 	        }// end asc
 	        if(order === 'desc'){
 	            $(select).html($(select).children('option').sort(function (y, x) {
 	                return $(x).text().toUpperCase() < $(y).text().toUpperCase() ? -1 : 1;
 	            }));
-	    		select.prepend("<option value=\"\" disabled selected>Select one</option>")
+	    		select.prepend("<option value=\"\" disabled selected></option>")
 	            $(select).get(0).selectedIndex = 0;
 	        }// end desc
 	    }

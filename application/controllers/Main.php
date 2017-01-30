@@ -849,9 +849,8 @@ class Main extends CI_Controller {
 			}
  
 			$data["list"] =  $this->query_model->getData($this->param);
-			$data["fields"] = "ViewItems|Variants,ItemNo|Item Number,Name|Item Name,NoOfItems|No of Variant,UOM|UOM,Name1|Family,Name2|Category,Name3|Subcategory";
-			if($role != "supplier")
-				$data["fields"].= ",SupplierName|Supplier name";
+			$data["fields"] = "ViewItems|Variants,ItemNo|Item Number,Name|Item Name,ItemFor|Item For,NoOfItems|No of Variant,UOM|UOM,Name1|Family,Name2|Category,Name3|Subcategory";
+		 
 		 
 			$data["fields"].= ",Action|Action"; 
 			return $data; 
@@ -1335,6 +1334,7 @@ class Main extends CI_Controller {
 	 		$variant = $this->input->post("data");
 	 		$itemname = trim($this->input->post("itemname"));
 	 		$uom = $this->input->post("UOM");
+	 		$itemfor = $this->input->post("itemfor");
 	 		$family = $this->input->post("family");
 	 		$category = $this->input->post("category");
 	 		$subcategory = $this->input->post("subcategory");
@@ -1345,12 +1345,13 @@ class Main extends CI_Controller {
 			$this->param = $this->query_model->param; 
 			$data["Name"] = $itemname;
 			$data["UOM"] = $uom;
+			$data["ItemFor"] = $itemfor;
 			$data["Level1No"] = $family;
 			$data["Level2No"] = $category;
 			$data["Level3No"] = $subcategory;
 			$data["SRemoved"] = 0;
 			$data["Removed"] = 0;
-			$data["Owned"] = 0;
+			//$data["Owned"] = 0;
 			$data["SupplierNo"] = $supplierno;
 			$this->param["transactionname"] = "New items inserted:" + $itemname;
 			$this->param["dataToInsert"] = $data;
@@ -1373,12 +1374,13 @@ class Main extends CI_Controller {
 				$datavariant = array(); 
 				$datavariant["ItemNo"] = $dataitems->ItemNo;
 				$datavariant["SRP"] = $v->SRP;
+				$datavariant["Price"] = $v->SRP;
 				$datavariant["DPOCost"] = $v->DPOCost; 
 				$datavariant["ImageFile"] = $v->FileName; 
 				$datavariant["VariantName"] = $v->VariantsName; 
 				$datavariant["VariantNameJSON"] = json_encode($v->VariantsNameJSON); 
 				$datavariant["SupplierNo"] = $supplierno;
-				$datavariant["Owned"] = 0;
+				// $datavariant["Owned"] = ;
 				$this->param["transactionname"] = "New items inserted:" + $itemname;
 				$this->param["dataToInsert"] = $datavariant;
 				$this->param["table"] = "itemvariant";
@@ -1389,12 +1391,12 @@ class Main extends CI_Controller {
 	 	}
 
 	 	function checkItemNameExistsBySupplier(){
-			$supplierno = $this->session->userdata("supplierno");
+			// $supplierno = $this->session->userdata("supplierno");
 			$itemname = trim($this->input->post("iname"));
 	 		$this->param = $this->query_model->param;  
 			$this->param["table"] = "item"; 
 			$this->param["fields"] = "*";
- 		    $this->param["conditions"] = "UPPER(Name) = UPPER('$itemname') and SupplierNo = '$supplierno' ";
+ 		    $this->param["conditions"] = "UPPER(Name) = UPPER('$itemname') ";
 			$data = $this->query_model->getData($this->param);
 			echo (($data) ? 1 : 0);
 	 	}

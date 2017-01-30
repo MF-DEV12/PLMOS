@@ -35,6 +35,175 @@
 
                     </div>
                 </div>
+                 <div class="content-list" data-content="additems">
+              <div class="col-md-12" style="font-size: 14px;">
+                  <div class="btn-group main-button btn-group-mode btn-action-right">
+                    <button id="btn-backitems" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
+                    <button id="btn-submititemvariant" class="btn btn-action"><span class="glyphicon glyphicon-ok-circle"></span> Save items with variant</button>
+                  </div> 
+                  <div class="group-1" style="padding-top:10px;">
+                    <ul class="stepNav threeWide">
+                      <li class="selected" data-view="item-info"><a href="#" title="">Information</a></li>
+                      <li data-view="item-variants"><a href="#" title="" >Variants</a></li>
+                      <li data-view="item-review"><a href="#" title="">Review</a></li>
+                    </ul>
+                    <div class="step-holder">
+                      <div class="step-view col-md-12 show" data-view="item-info" align="center">
+
+                          <table class="display form-table" width="80%" style="margin-top: 20px;">
+                                  <tr>
+                                      <td>
+                                          <div class="group">      
+                                            <input class="inputMaterial required" type="text" id="txt-itemname" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Item name:</label>
+                                          </div> 
+                                      </td>
+                                      <td>
+                                          <div class="group">
+                                            <select class="inputMaterial required" id="list-family" required>  
+                                               <option value="" selected disabled=""></option>
+                                               <?php foreach($listfamily as $row){ ?>
+                                                  <option value="<?=$row->id;?>"><?=$row->Name;?></option>
+                                               <?php }?>
+                                            </select>  
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Family:</label>
+                                          </div>
+                                      </td> 
+                                  </tr>
+                                  <tr>
+                                      <td>
+                                          <div class="group">   
+                                            <select class="inputMaterial required" id="list-uom" required>  
+                                               <option value="" selected disabled=""></option>
+                                               <?php foreach($listuom as $row){ ?>
+                                                  <option value="<?=$row->UOMCode;?>"><?=$row->Description . " (". $row->UOMCode .")";?></option>
+                                               <?php }?>
+                                            </select><span class="pull-right"><a style="cursor:pointer;color:#172052!important;" data-toggle="modal" data-target="#addUOM"><span class="glyphicon glyphicon-plus"></span> Add UOM</a></span>     
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Unit of measure (UOM):</label>
+                                          </div> 
+                                      </td>
+                                      <td>
+                                          <div class="group">
+                                            <select class="inputMaterial" id="list-category" required> 
+                                               <option value="" selected disabled=""></option> 
+                                            </select>       
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Category:</label>
+                                          </div>
+                                      </td>  
+                                  </tr>
+                                  <tr>
+                                      <td>
+                                          <div class="group">
+                                            <select class="inputMaterial required" id="list-itemfor" required>  
+                                               <option value="" selected disabled=""></option>
+                                               <option value="1">Customer</option>
+                                               <option value="2">Supplier</option>
+                                               <option value="0">All</option>
+                                            </select>  
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Item for:</label>
+                                          </div>
+                                      </td>
+                                       <td>
+                                          <div class="group"> 
+                                            <select class="inputMaterial" id="list-subcategory" required>  
+                                               <option value="" selected disabled=""></option>
+                                            </select>      
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Subcategory:</label>
+                                          </div>
+                                      </td>  
+                                  </tr>
+                                  
+                                   
+                          </table>
+                        
+                      </div>
+                      <div class="step-view col-md-12" data-view="item-variants">
+                        <div class="col-md-5" style="background: white;    border: 1px solid #ddd;">
+                          <div class="variant-wrap">
+                             <!-- <label>Multiple items?</label> 
+                              <div class="checkbox"> 
+                                <label><input type="checkbox"  id="chkIsMultiple" value="">Create Attributes and Options</label>
+                              </div>  -->
+                              <div>
+                              <span>Create Attribute and Options for the variant:</span>
+                                 <table width="100%" id="table-attribute" class="display table-custom" > 
+                                    <thead> 
+                                        <tr>
+                                            <td width="200px">Attribute</td>
+                                            <td>Options</td>
+                                            <td></td>
+                                        </tr> 
+                                    </thead>
+                                    <tbody>
+                                       
+                                    </tbody>
+                                    <tfoot>
+                                      <tr>
+                                          <td colspan="3">
+                                              <span id="addattribute" class="pull-right"><span class="glyphicon glyphicon-plus"></span> Add more attribute</span>
+
+                                          </td>
+                                      </tr>
+                                    </tfoot>
+                                    
+                                </table> 
+                              </div> 
+                              <!-- <button class="btn btn-action" id="btn-itemvariantgenerate">Generate Item with Variant</button>  -->
+                            </div>
+                        </div>
+                        <div class="col-lg-7">
+                           <button id="btn-itemvariantadd" class="btn btn-default pull-left" style="margin-bottom: 10px;"><span class="glyphicon glyphicon-plus"></span> Add items</button>
+
+                          <table class="display main-table" data-table="listitemvariant" ></table> 
+                        </div> 
+                      </div>
+                      <div class="step-view col-md-12" data-view="item-review">
+                          <div class="col-md-12 item-review-wrap">
+                            <div class="group"> 
+                              <input type="text" class="inputMaterial display" id="lbl-itemname" readonly/>    
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="formlabel display">Item Name:</label>
+                            </div>
+                             <div class="group"> 
+                              <input type="text" class="inputMaterial display" id="lbl-uom" readonly/>    
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="formlabel display">Unit of Measure (UOM):</label>
+                            </div>
+                             <div class="group"> 
+                              <input type="text" class="inputMaterial display" id="lbl-category" readonly/>    
+                              <span class="highlight"></span>
+                              <span class="bar"></span>
+                              <label class="formlabel display">Category:</label>
+                            </div>
+                          </div>
+                         
+
+                          <table class="display main-table" data-table="listitemvariantreview" ></table> 
+
+                      </div>
+                    </div>
+
+
+
+                  </div>
+    
+              </div> 
+               
+          </div> 
 
                 <div class="content-list" data-content="receivings">
                     <button id="btn-directreceive" class="btn main-button btn-action btn-action-right"><span class="glyphicon glyphicon-arrow-right"></span> Direct Receive</button>
@@ -210,38 +379,8 @@
                         <button id="btn-submititemvariant" class="btn btn-action"><span class="glyphicon glyphicon-ok-circle"></span> Submit</button>
                     </div>
                     <table class="display main-table" data-table="items"> </table>
-                    <div class="content-child">
-                         <div>
-                            <div class="col-lg-4">  
-                                    <label>Multiple items?</label> 
-                                    <div class="checkbox"> 
-                                      <label><input type="checkbox"  id="chkIsMultiple" value="">Create Attributes and Options</label>
-                                    </div> 
-                                    <table width="100%" id="table-attribute" class="display" style="margin-top:40px;"> 
-                                        <thead> 
-                                            <tr>
-                                                <td>Attribute</td>
-                                                <td>Options</td>
-                                                <td></td>
-                                            </tr> 
-                                        </thead>
-                                        <tbody>
-                                           
-                                        </tbody>
-                                        
-                                    </table> 
-                                    <span id="addattribute"><span class="glyphicon glyphicon-plus"></span> Add more attribute</span>
-                                    <button class="btn btn-action" id="btn-itemvariantgenerate">Generate Item with Variant</button>
+                     
 
-                            </div>
-
-                            <div class="col-lg-8 varianttable-wrap"> 
-                                <table class="display main-table" data-table="listitemvariant" ></table> 
-                            </div> 
-                          
-                    </div>
-
-                    </div>
                 </div>
 
                 <div class="content-list" data-content="lowstocks">
@@ -323,5 +462,6 @@
                 </div>
  
 </div>
+
 
 

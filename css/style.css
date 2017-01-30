@@ -210,7 +210,7 @@ span.badge {
 }
 #addattribute{
     font-size: 14px;
-    color: #009688;
+    color: #172052;
 
 }
 .variant-wrap{
@@ -627,8 +627,8 @@ button#btn-add:after {
 
 .btn-primary:hover {
     color: #fff;
-    background-color:#009688 !important  ;
-    border-color: #009688 !important  ;
+    background-color:#172052 !important  ;
+    border-color: #172052 !important  ;
 }
 .btn.focus, .btn:focus, .btn:hover {
     color: #fff;
@@ -636,8 +636,8 @@ button#btn-add:after {
 }
 .btn-primary {
     color: #fff;
-    background-color: #009688 !important;
-    border-color: #009688 !important;
+    background-color: #172052 !important;
+    border-color: #172052 !important;
 }
 
 
@@ -891,7 +891,7 @@ div.item-review-wrap{
 .inputMaterial:focus ~ label.formlabel , .inputMaterial:valid ~ label.formlabel       {
   top:-20px;
   font-size:14px;
-  color: #009688;
+  color: #172052;
 }
 
 /* BOTTOM BARS ================================= */
@@ -902,7 +902,7 @@ div.item-review-wrap{
   width:0;
   bottom:1px; 
   position:absolute;
-  background: #009688; 
+  background: #172052; 
   transition:0.2s ease all; 
   -moz-transition:0.2s ease all; 
   -webkit-transition:0.2s ease all;

@@ -3,9 +3,10 @@
 <head>
     <!-- Include meta tag to ensure proper rendering and touch zooming -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <?php $view = $this->session->userdata("itemfor"); ?>
 
       
-    <title>Lampano Hardware - Items</title>
+    <title><?=(($view) ? (($view==1) ? "What we Sell" : "What we Buy") : "Products");?> - <?=COMPANY_NAME;?></title>
 
 
     <link href="<?=base_url('css/homestyle/bootstrap.min.css');?>" rel="stylesheet">
@@ -93,6 +94,8 @@
         </div>
           
         <div class="heading text-center col-xs-12 col-sm-12 col-md-9 col-lg-9 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
+            <h2 style="text-align: left;"><?=(($view) ? (($view==1) ? "What we Sell" : "What we Buy") : "");?></h2>
+          
         <?php if(count($family) > 0){ ?>
           <ol class="breadcrumb item-header">
               <li class="breadcrumb-item <?=((!$category) ? "active" : "");?>"><?=$family[0]->Name1;?></li>  
@@ -109,12 +112,13 @@
                       <div class="row">
                         <div class="col-sm-12 item-holder"  onclick="viewItems('<?=$key->ItemNumber?>');">
                           <img width="200px" height="200px" src="images/variant-folder/<?=$key->ImageFile?>" alt="" onerror="this.src='<?=base_url("images/noimage.gif")?>';"/>
-                          <h4><?=$key->Name?></h4>
+                          <h5><?=$key->Name?></h5>
                           <p class="category"><?=$key->Category?></p>
-                          <b>&#8369; <?=number_format($key->Price,2)?></b>
+                          <h6><?=(($key->Stocks > 0) ? "Stock: " . $key->Stocks : "Out of Stocks");?></h6>
+                          <b>Price: &#8369; <?=number_format($key->Price,2)?></b>
                         </div>
                         <div class="col-sm-12">
-                          <button class="btn btn-action btn-buy"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#confirmcart" onclick="orderItem('<?=$key->ItemNumber?>');"  style="width:100%;">Buy</button> 
+                          <button class="btn btn-action btn-buy"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#confirmcart" onclick="orderItem('<?=$key->ItemNumber?>');"  style="width:100%;" <?=(($key->Stocks > 0) ? "": "disabled");?>>Buy</button> 
                         </div> 
                       </div>
                    </div>

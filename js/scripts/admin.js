@@ -948,8 +948,8 @@ $(function(){
                 function(response){
                     $("select#list-category").empty();
                     $("select#list-subcategory").empty();
-                    $("select#list-category").append("<option value=\"\" selected disabled>Select one</option>")
-                    $("select#list-subcategory").append("<option value=\"\" selected disabled>Select one</option>")
+                    $("select#list-category").append("<option value=\"\" selected disabled></option>")
+                    $("select#list-subcategory").append("<option value=\"\" selected disabled></option>")
                                                  
 
                     var data = response
@@ -972,7 +972,7 @@ $(function(){
             callAjaxJson("main/getSubCategory", param, 
                 function(response){
                     $("select#list-subcategory").empty();
-                    $("select#list-subcategory").append("<option value=\"\" selected disabled>Select one</option>")
+                    $("select#list-subcategory").append("<option value=\"\" selected disabled></option>")
                     var data = response
                     for(x in data){
                         var option = $("<option/>")
@@ -1036,7 +1036,7 @@ $(function(){
             curtrvariant = tr
             var table =  $("#table-attribute-setup")
             $("#table-attribute-setup tbody").empty()
-            $("input.attribute-name").each(function(e){
+            $("table#table-attribute input.attribute-name").each(function(e){
                 var attrname = $(this)
                 var tr2 = $("<tr/>")
                 tr2.append("<td width=\"29px\">"+ attrname.val() +"</td>")
@@ -1112,6 +1112,7 @@ $(function(){
             var param = new Object()
             param.itemname = $("input#txt-itemname").val()
             param.UOM = $("select#list-uom option:selected").val()
+            param.itemfor = $("select#list-itemfor option:selected").val()
             param.family = $("select#list-family option:selected").val()
             param.category = $("select#list-category option:selected").val()
             param.subcategory = $("select#list-subcategory option:selected").val()
@@ -1120,7 +1121,7 @@ $(function(){
              callAjaxJson("main/insertNewItemWithVariants", param, 
                 function(response){
                    if(response){
-                        $("div.sidebar ul.nav li[data-content=sup-items] a").click()
+                        $("div.sidebar ul.nav li[data-content=items] a").click()
                         bootbox.alert("New item has been created successfully.")
                    }
 
@@ -1168,9 +1169,9 @@ $(function(){
                 function(response){
                     if(response){
                         var modal =  $("#editvariantadmin")
-                        curTRVariantNoEditAdmin.childNodes[5].innerHTML = modal.find("input#txt-editPriceAdmin").val()
-                        curTRVariantNoEditAdmin.childNodes[6].innerHTML = modal.find("input#txt-editLowstockAdmin").val()
-                        curTRVariantNoEditAdmin.childNodes[7].innerHTML = modal.find("input#txt-editCriticalAdmin").val()
+                        curTRVariantNoEditAdmin.childNodes[4].innerHTML = modal.find("input#txt-editPriceAdmin").val()
+                        curTRVariantNoEditAdmin.childNodes[5].innerHTML = modal.find("input#txt-editLowstockAdmin").val()
+                        curTRVariantNoEditAdmin.childNodes[6].innerHTML = modal.find("input#txt-editCriticalAdmin").val()
                         updateNotification("items");
                         $("#editvariantadmin").modal("hide")
                     }
@@ -1534,7 +1535,7 @@ $(function(){
                 var arrList = new Object();
                 var list = new Object();
                 arrList.list  = "";
-                arrList.fields = "Image|Thumbnail,Attributes|Variant,DPOCost|DPO Cost,SRP|Suggested Retail Price(SRP),Action|";
+                arrList.fields = "Image|Thumbnail,Attributes|Variant,DPOCost|DPO Cost,Price|Price,Action|";
                 list["listitemvariant"] = arrList;
 
                 bindingDatatoDataTable(list)
@@ -1633,10 +1634,10 @@ $(function(){
   
         modal.find("div.image-variant").html(tr.childNodes[1].innerHTML)
         modal.find("p#lbl-variant").html(tr.childNodes[2].innerHTML)
-        modal.find("p#lbl-srp span").html(tr.childNodes[4].innerHTML)
-        modal.find("input#txt-editPriceAdmin").val(tr.childNodes[5].innerHTML) 
-        modal.find("input#txt-editLowstockAdmin").val(tr.childNodes[6].innerHTML) 
-        modal.find("input#txt-editCriticalAdmin").val(tr.childNodes[7].innerHTML) 
+        modal.find("p#lbl-srp span").html(tr.childNodes[3].innerHTML)
+        modal.find("input#txt-editPriceAdmin").val(tr.childNodes[4].innerHTML) 
+        modal.find("input#txt-editLowstockAdmin").val(tr.childNodes[5].innerHTML) 
+        modal.find("input#txt-editCriticalAdmin").val(tr.childNodes[6].innerHTML) 
     }
 
     function deleteVariant(elem){
@@ -1698,7 +1699,7 @@ $(function(){
         var inputPrice = toMoneyValue($("input#txt-editPriceAdmin").val());
 
         if(parseFloat(currentSRP,10) > parseInt(inputPrice,10)){
-            $("div#editvariantadmin").find("p.label-error").text("The Unit price must be greater than the SRP -> " + currentSRPStr + " "); 
+            $("div#editvariantadmin").find("p.label-error").text("The Unit price must be greater than the DPO Cost -> " + currentSRPStr + " "); 
             isOkay = false
             return isOkay;
         }
@@ -1928,7 +1929,7 @@ function bindingDataViewingVariants(response,table){
 
             if(data.role=="admin"){ 
                 addHeader(tr,"DPO Cost")
-                addHeader(tr,"SRP") 
+                // addHeader(tr,"SRP") 
                 addHeader(tr,"Price")
                 addHeader(tr,"Low Stock Level")
                 addHeader(tr,"Critical Level")
@@ -1951,7 +1952,7 @@ function bindingDataViewingVariants(response,table){
 
                 if(data.role=="admin"){ 
                     addCellData(tr,toMoney(list[row].DPOCost)) 
-                    addCellData(tr,toMoney(list[row].SRP)) 
+                    // addCellData(tr,toMoney(list[row].SRP)) 
                     addCellData(tr,toMoney(list[row].Price))  
                     addCellData(tr,list[row].LowStock)  
                     addCellData(tr,list[row].Critical)  

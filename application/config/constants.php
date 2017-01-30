@@ -86,4 +86,10 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 
-define('COMPANY_NAME', "Legacy Aluminum, Glass And Construction Supply Inc."); // highest automatically-assigned error code
+define('COMPANY_NAME', "Legacy Aluminum, Glass And Construction Supply Inc."); 
+
+
+// GOOGLE MAPS API
+define('GPS_API', "AIzaSyBAlK9GyBqRtZ6xTAk3p8u5IWUECzbKpZ0"); 
+
+ 

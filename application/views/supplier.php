@@ -220,7 +220,7 @@
  
 <!-- Modal -->
 <!-- Attributes/Options setup -->
-<div class="modal fade" id="attributesetup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-size: 20px;">
+<!-- <div class="modal fade" id="attributesetup" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-size: 20px;">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -262,7 +262,7 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="modal fade" id="editvariant" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-size: 20px;">
   <div class="modal-dialog" role="document">
