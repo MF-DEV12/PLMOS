@@ -2,13 +2,13 @@
 <html>
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
-	<title>Purchase Order</title>
+	<title>Order Receipt</title>
 </head>
 <body>
 
 <div class="alert alert-success">
-  <h3><strong>PURCHASE ORDER: <?=$supplierno?></strong></h3><br/>
-  Ship To: <strong>Lampano Hardware Tradings</strong>
+  <h3><strong>ORDER NUMBER: <?=$orderno?></strong></h3><br/>
+  Ship To: <strong><?=COMPANY_NAME;?></strong>
 </div>
 
 
@@ -20,7 +20,7 @@
 			<th>#</th>
 			<th>Item Number</th>
 			<th>Name / Description</th>
-			<th>Cost</th>
+			<th>Price</th>
 			<th>Quantity</th>
 			<th>Total</th>
 		</tr>
@@ -31,13 +31,13 @@
 		<?php foreach($item as $key){ ?>
 			<tr>
 				<td><?=$i;?></td>
-				<td><?=$key->ItemNo?></td>
+				<td><?=$key->ItemNumber?></td>
 				<td><?=$key->ItemDescription?></td>
-				<td><?=number_format($key->DPOCost,2)?></td>
-				<td><?=$key->RequestsQty?></td>
-				<td><?=number_format($key->SubTotal,2)?></td> 
+				<td><?=number_format($key->Price,2)?></td>
+				<td><?=$key->Quantity?></td>
+				<td><?=number_format($key->Total,2)?></td>
 				<?php $i++; ?>
-				<?php $total += (float)$key->SubTotal; ?>
+				<?php $total += (float)$key->Total; ?>
 			</tr>
 		<?php } ?>
 	</tbody>
@@ -52,7 +52,7 @@
 
 
 <p>Kind regards,<br/>
-Lampano Hardware Tradings
+<?=COMPANY_NAME;?>
 </p>
 
 </body>

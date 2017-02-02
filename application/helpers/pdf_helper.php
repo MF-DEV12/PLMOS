@@ -14,13 +14,13 @@ function prep_pdf($orientation = 'portrait')
 		$CI->cezpdf->ezStartPageNumbers(500,28,8,'','{PAGENUM}',1);
 		$CI->cezpdf->line(20,40,578,40);
 		$CI->cezpdf->addText(50,32,8,'Printed on ' . date('m/d/Y h:i:s a'));
-		$CI->cezpdf->addText(50,22,8,'Lampano Hardware Tradings');
+		$CI->cezpdf->addText(50,22,8, COMPANY_NAME);
 	}
 	else {
 		$CI->cezpdf->ezStartPageNumbers(750,28,8,'','{PAGENUM}',1);
 		$CI->cezpdf->line(20,40,800,40);
 		$CI->cezpdf->addText(50,32,8,'Printed on ' . date('m/d/Y h:i:s a'));
-		$CI->cezpdf->addText(50,22,8,'Lampano Hardware Tradings');
+		$CI->cezpdf->addText(50,22,8, COMPANY_NAME);
 	}
 	$CI->cezpdf->restoreState();
 	$CI->cezpdf->closeObject();

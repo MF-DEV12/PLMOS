@@ -237,7 +237,30 @@
     </div>
 </footer>
 
+<div class="modal fade" id="SuccessCheckout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" >
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Your Order has been submitted.</h4>
+      </div>
+      <div class="modal-body">
+          You may now print your order by clicking the "Print my Order" button for review. <br/>Please wait for the approval by admin via email and for your password has been sent to your email address.
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-action" href="#" id="printorder" target="_blank">Print my Order</a>
+        <a type="button" class="btn btn-default" data-dismiss="modal"  href="<?=base_url();?>" >Done</a>
+      </div>
+    </div>
+  </div>
+</div>
 
+ 
+
+ 
+
+
+ 
 
  
 

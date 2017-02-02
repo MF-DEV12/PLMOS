@@ -854,7 +854,7 @@ class Main extends CI_Controller {
 		 
 			$data["fields"].= ",Action|Action"; 
 			return $data; 
-		}
+		} 
 
 		function generateListItems(){
 			$this->load->library("GeneratePDF");

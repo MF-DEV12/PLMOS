@@ -1299,9 +1299,11 @@ function ezText($text,$size=0,$options=array(),$test=0){
 // ------------------------------------------------------------------------------
 
 function ezImage($image,$pad = 5,$width = 0,$resize = 'full',$just = 'center',$border = ''){
+
 	//beta ezimage function
 	if (stristr($image,'://'))//copy to temp file
 	{
+    $cont = "";
 		$fp = @fopen($image,"rb");
 		while(!feof($fp))
    		{
@@ -1314,8 +1316,9 @@ function ezImage($image,$pad = 5,$width = 0,$resize = 'full',$just = 'center',$b
   		fclose($fp2);
 		$temp = true;
 	}
-
+ 
 	if (!(file_exists($image))) return false; //return immediately if image file does not exist
+  
 	$imageInfo = getimagesize($image);
 	switch ($imageInfo[2]){
 		case 2:
@@ -1361,14 +1364,14 @@ function ezImage($image,$pad = 5,$width = 0,$resize = 'full',$just = 'center',$b
 			$width = ($height*$ratio); //fix width
 		}
 	}
-
+$offset = 0;
 	//fix x-offset if image smaller than bigwidth
 	if ($width < $bigwidth)
 	{
 		//center if justification=center
 		if ($just == 'center')
 		{
-			$offset = ($bigwidth - $width) / 2;
+			$offset = ($bigwidth - $width) / 3;
 		}
 		//move to right if justification=right
 		if ($just == 'right')
@@ -1411,9 +1414,11 @@ function ezImage($image,$pad = 5,$width = 0,$resize = 'full',$just = 'center',$b
 
 	}
 	// move y below image
-	$this->y = $this->y - $pad - $height;
+//	$this->y = $this->y - $pad - $height;
 	//remove tempfile for remote images
 	if ($temp == true) unlink($image);
+ // die("sasa");
+ 
 
 }
 // ------------------------------------------------------------------------------

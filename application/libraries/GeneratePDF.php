@@ -6,33 +6,36 @@ class GeneratePDF{
 	function Generate($data){ 
 		 
 		$this->ci = & get_instance();
-  
-	    $this->ci->load->library('cezpdf');
-		$this->ci->load->helper('pdf');
+  		$pdf = $this->ci;
+	    $pdf->load->library('cezpdf');
+		$pdf->load->helper('pdf');
 
 
-		$this->ci->cezpdf->ezText($data["title"], 15, array('justification' => 'right'));
+		$pdf->cezpdf->ezText($data["title"], 15, array('justification' => 'right'));
 
-		$this->ci->cezpdf->ezText('Lampano Hardware Tradings', 15, array('justification' => 'left'));
+		$pdf->cezpdf->ezText(COMPANY_NAME, 15, array('justification' => 'left'));
 
-	    $this->ci->cezpdf->ezSetDy(-0);
+	    $pdf->cezpdf->ezSetDy(-0);
 
-	    $content = "22 General Luis Novaliches, Quezon City, Metro Manila \n";
-	    $content .= "Tel no. +63 912 345 6789 \n";
+	    $content = "Legacy Building, 118 Tunasan National Road, Muntinlupa, 1773 \n";
+	    $content .= "(02) 861-8286, (02) 986-7372, Globe: 0927-3098165 \n";
 
-	    $this->ci->cezpdf->ezText($content, 10, array('justification' => 'left'));
+	    $pdf->cezpdf->ezText($content, 10, array('justification' => 'left'));
+	    $pdf->cezpdf->ezImage(base_url('images/watermark.jpg'), 0, 500, 'none', 'center','');
 		
 		prep_pdf(); // creates the footer for the document we are creating.
  
-		$this->ci->cezpdf->ezTable($data["list"], $data["columns"], $data["table-title"], array('width'=>550));
+		$pdf->cezpdf->ezTable($data["list"], $data["columns"], $data["table-title"], array('width'=>550));
+
+		 
 
 		if(isset($data["footer"])){
-			$this->ci->cezpdf->ezSetDy(-20);
-			$this->ci->cezpdf->ezText($data["footer"], 13, array('justification' => 'right'));
+			$pdf->cezpdf->ezSetDy(-20);
+			$pdf->cezpdf->ezText(COMPANY_NAME, 13, array('justification' => 'right'));
 		}
 	    	
 
-		$this->ci->cezpdf->ezStream();
+		$pdf->cezpdf->ezStream();
 	} 
 
  

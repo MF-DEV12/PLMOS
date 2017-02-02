@@ -46,7 +46,7 @@ class Items extends CI_Controller {
  	}
 
  	function getFamilyName($level1no = ""){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level1";
  		$this->param["fields"] = "*";
 		$this->param["conditions"] = "Level1No = '$level1no'";
@@ -56,7 +56,7 @@ class Items extends CI_Controller {
  	}
 
  	function getCategoryName($level2no = ""){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level2";
  		$this->param["fields"] = "*";
 		$this->param["conditions"] = "Level2No = '$level2no'";
@@ -66,7 +66,7 @@ class Items extends CI_Controller {
  	}
 
  	function getSubCategoryName($level3no = ""){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level3";
  		$this->param["fields"] = "*";
 		$this->param["conditions"] = "Level3No = '$level3no'";
@@ -78,7 +78,7 @@ class Items extends CI_Controller {
 
 
  	function getListFamily(){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level1";
  		$this->param["fields"] = "*";
 		$this->param["order"] = "Name1";
@@ -87,7 +87,7 @@ class Items extends CI_Controller {
  	}
 
  	function getCategoryByFamily(){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level2";
  		$this->param["fields"] = "*";
 		$this->param["order"] = "Name2";
@@ -95,7 +95,7 @@ class Items extends CI_Controller {
 		return $result;
  	}
  	function getSubCategory(){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level3";
  		$this->param["fields"] = "*";
 		$this->param["order"] = "Name3";
@@ -113,7 +113,7 @@ class Items extends CI_Controller {
  			$listitem = $listItemsInCart;
  		}
  		
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "vw_itemsforsale";
  		$this->param["fields"] = "*,0 Quantity";
 		$this->param["conditions"] = "ItemNumber IN($listitem)";
@@ -140,7 +140,7 @@ class Items extends CI_Controller {
  		$data = json_decode($data);
  		$itemfor = $this->session->userdata("itemfor");
  		$itemfor = ($itemfor) ? $itemfor : "";
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "vw_itemsforsale";
  		$this->param["fields"] = "*";
 		$this->param["conditions"] = "";
@@ -168,7 +168,7 @@ class Items extends CI_Controller {
  	}
 
  	function getItemVariant($item){ 
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "itemvariant";
  		$this->param["fields"] = "*";
  		$this->param["conditions"] = "ItemNo = '$item' and Owned = 1 and Price is not null";
@@ -261,7 +261,7 @@ class Items extends CI_Controller {
 		$listitem = implode(",", $listitemkeys);
 	 
  		
- 		$this->param = $this->param = $this->query_model->param; 
+ 		$this->param = $this->query_model->param; 
  		$this->param["table"] = "vw_itemsforsale";
  		$this->param["fields"] = "*,0 Quantity";
 		$this->param["conditions"] = "ItemNumber IN($listitem)";
@@ -317,18 +317,19 @@ class Items extends CI_Controller {
 
  		$data = $this->input->post("data");
  		$data = json_decode($data);
+		$this->load->library("Email_Lib");
 		$username = $this->session->userdata("username");
 		if(!$username){ 
 			//Insert Customer
-			$this->param = $this->param = $this->query_model->param; 
+			$this->param = $this->query_model->param; 
 			$this->param["table"] = "customer";
 			$this->param["dataToInsert"] = $data;
 			$this->param["transactionname"] = "New customer";
 			$this->query_model->insertData($this->param);
 
 			//Insert Account
-			$password = 'password';//$this->randomPassword();
-			$this->param = $this->param = $this->query_model->param; 
+			$password = $this->randomPassword();
+			$this->param = $this->query_model->param; 
 			$this->param["table"] = "accounts";
 			$account["Username"] = $data->Email;
 			$account["LastName"] = $data->LastName;
@@ -337,11 +338,19 @@ class Items extends CI_Controller {
 			$account["LoginType"] = 'customer'; 
 			$this->param["dataToInsert"] = $account;
 			$this->query_model->insertData($this->param);
+
+
+			$edata["firstname"] = $account["FirstName"];
+			$edata["email"] = $account["Username"];
+			$edata["password"] = $password;
+			$edata["companyname"] = COMPANY_NAME;
+
+			$this->email_lib->sendAccount($edata);
 		}
 
 
 		// Get CustomerNo by Email
-		$this->param = $this->param = $this->query_model->param; 
+		$this->param = $this->query_model->param; 
 		$this->param["table"] = "customer";
 		$this->param["fields"] = "*";
 		if(!$username)
@@ -355,7 +364,7 @@ class Items extends CI_Controller {
 
 		//Insert tblOrder 
 		$data = array();
-		$this->param = $this->param = $this->query_model->param; 
+		$this->param = $this->query_model->param; 
 		$this->param["table"] = "tblorder";
 		$data["CustomerNo"] = $customerNo;
 		$data["Date"] = $datetime;
@@ -365,13 +374,15 @@ class Items extends CI_Controller {
 		$this->query_model->insertData($this->param);
 
 		// Get OrderNo by Date and CustomerNo
-		$this->param = $this->param = $this->query_model->param; 
+		$this->param = $this->query_model->param; 
 		$this->param["table"] = "tblorder";
 		$this->param["fields"] = "*";
 		$this->param["conditions"] = "Date = '$datetime' and CustomerNo = '$customerNo'";
 		$result = $this->query_model->getData($this->param);
 		$OrderNo = $result[0]->OrderNo;
- 
+
+
+		
 
 		$listItemsInCart = $this->session->userdata("cartitems"); 
 		$itemsoncart = $this->getItemsByItemNo($listItemsInCart);
@@ -381,7 +392,7 @@ class Items extends CI_Controller {
 		// INSERT ORDER ITEM DETAILS - tblorderdetails
 		foreach ($itemsoncart as $key) {
 			$data = array();
-			$this->param = $this->param = $this->query_model->param; 
+			$this->param = $this->query_model->param; 
 			$this->param["table"] = "tblorderdetails";
 			$data["OrderNo"] = $OrderNo;
 			$data["ItemVariantNo"] = $key->ItemNumber;
@@ -394,10 +405,13 @@ class Items extends CI_Controller {
 			$total += (float)$key->Price * $key->Quantity;
 		}
 		
+		// $orderlist["orderno"] = $OrderNo;
+		// $orderlist["item"] = $this->getOrderlist($OrderNo);
+		// $this->email_lib->sendOrderList($data);
 
 		//Update TotalAmount from tblorder
 		$data = array();
-		$this->param = $this->param = $this->query_model->param; 
+		$this->param = $this->query_model->param; 
 		$this->param["table"] = "tblorder";
 		$this->param["conditions"] = "Date = '$datetime' and CustomerNo = '$customerNo'";
 		$data["TotalAmount"] = $total;
@@ -406,8 +420,36 @@ class Items extends CI_Controller {
  		
 		$this->session->unset_userdata('cartitems');
 
-  		echo true;
+  		echo json_encode(array("orderno"=>$OrderNo));
  	}
+
+ 	function getOrderlist($orderno){
+ 		$this->param = $this->query_model->param; 
+		$this->param["table"] = "vw_orderlistbyorderno";
+		$this->param["fields"] = "*";
+		$this->param["conditions"] = "OrderNo = '$orderno'";
+		$this->param["isArrayReturn"] = true;
+		return $this->query_model->getData($this->param);	
+ 	}
+
+ 	function generateOrderSummary(){
+ 		$orderno = $this->input->get("on");
+ 		if(!$orderno){return;}
+		$this->load->library("GeneratePDF");
+
+		$data["list"] =  $this->getOrderlist($orderno);
+		$columns["ItemNumber"] = "Item Number";
+		$columns["ItemDescription2"] = "Description";
+		$columns["UOM"] = "UOM";
+		$columns["Price"] = "Price";
+		$columns["Quantity"] = "Qty";
+		$columns["Total"] = "Sub Total";
+		$data["columns"] =  $columns; 
+		$data["table-title"] =  "List of Item(s)"; 
+		$data["title"] =  "Order #".$orderno; 
+
+		$this->generatepdf->generate($data); 
+	}
 
  	function randomPassword() {
 	    $alphabet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890';
@@ -421,7 +463,7 @@ class Items extends CI_Controller {
 	}
 
 	function getCustomerDetailsByEmail($email){
-		$this->param = $this->param = $this->query_model->param; 
+		$this->param = $this->query_model->param; 
 		$this->param["table"] = "customer";
 		$this->param["fields"] = "*";
 		$this->param["conditions"] = "Email = '$email'";

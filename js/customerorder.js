@@ -90,10 +90,13 @@
 
           callAjaxJson("items/submitOrder", param2, 
             function(response){
-                if(response){
-                  bootbox.alert("Your Order has been submitted. <br/>Please wait for the approval by admin via email and for your password has been sent to your email address",function(e){
-                    location.href = baseUrl
-                  })
+                var data = response 
+                if(data.orderno){
+                  var data 
+                  var modal = $("#SuccessCheckout")  
+                  $("a#printorder").attr("href", baseUrl + "items/generateOrderSummary?on=" + data.orderno)    
+                  modal.modal("show");
+ 
                 }
             }, 
           ajaxError)  
