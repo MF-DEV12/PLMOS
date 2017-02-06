@@ -114,10 +114,10 @@
 
                           <?php foreach($neworders as $key) {?>
                           <tr>
-                             <td onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">
+                             <td>
                               <div class="row">
                                 <div class="col-xs-6">
-                                  <h4 style="color:#048e81;">#<?=$key->OrderNo?></h4> 
+                                  <h4 style="color:#172052;" onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">#<?=$key->OrderNo?></h4> 
                                   <h5>Shipping Address : <br/><?=$key->ShipAddress?></h5> 
                                 </div>
                                 <div class="col-xs-6"> 
@@ -155,10 +155,10 @@
 
                           <?php foreach($process as $key) {?>
                           <tr>
-                             <td onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">
+                             <td>
                               <div class="row">
                                 <div class="col-xs-6">
-                                  <h4 style="color:#048e81;">#<?=$key->OrderNo?></h4> 
+                                  <h4 style="color:#172052;" onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">#<?=$key->OrderNo?></h4> 
                                   <h5>Shipping Address : <br/><?=$key->ShipAddress?></h5> 
                                 </div>
                                 <div class="col-xs-6"> 
@@ -195,10 +195,10 @@
 
                           <?php foreach($shipping as $key) {?>
                           <tr>
-                            <td onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">
+                            <td>
                               <div class="row">
                                 <div class="col-xs-6">
-                                  <h4 style="color:#048e81;">#<?=$key->OrderNo?></h4> 
+                                  <h4 style="color:#172052;" onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">#<?=$key->OrderNo?></h4> 
                                   <h5>Shipping Address : <br/><?=$key->ShipAddress?></h5> 
                                 </div>
                                 <div class="col-xs-6"> 
@@ -235,10 +235,10 @@
 
                           <?php foreach($delivered as $key) {?>
                           <tr>
-                             <td onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">
+                            <td>
                               <div class="row">
                                 <div class="col-xs-6">
-                                  <h4 style="color:#048e81;">#<?=$key->OrderNo?></h4> 
+                                  <h4 style="color:#172052;" onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">#<?=$key->OrderNo?></h4> 
                                   <h5>Shipping Address : <br/><?=$key->ShipAddress?></h5> 
                                 </div>
                                 <div class="col-xs-6"> 
@@ -275,10 +275,10 @@
 
                           <?php foreach($cancelled as $key) {?>
                           <tr>
-                            <td onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">
+                            <td>
                               <div class="row">
                                 <div class="col-xs-6">
-                                  <h4 style="color:#048e81;">#<?=$key->OrderNo?></h4> 
+                                  <h4 style="color:#172052;" onclick="viewOrderList('<?=$key->OrderNo?>');"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#viewOrderList">#<?=$key->OrderNo?></h4> 
                                   <h5>Shipping Address : <br/><?=$key->ShipAddress?></h5> 
                                 </div>
                                 <div class="col-xs-6"> 

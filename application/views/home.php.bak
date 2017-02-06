@@ -129,8 +129,10 @@
                                         <div class="col-md-9">
                                             <span><?=$name;?></span>
                                             <!-- <p class="text-muted small role"><?=$role;?></p> -->
-                                            <div class="divider"> </div> 
-                                            <span class="pull-right"><a href="<?=base_url('mypurchase')?>"  style="color: gray;padding:12px;text-align: right; text-transform: capitalize;font-weight: 100;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Purchase</a></span>
+                                            <div class="divider">
+                                            </div>
+                                            <a style="color: gray;padding:12px;" href="<?=base_url('mypurchase')?>">My Purchase</a>
+                                            <!-- <a href="#" class="btn btn-primary btn-sm active">View Profile</a> -->
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +143,7 @@
                                                 <button class="btn btn-default btn-sm">Change Password</button>
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-sm pull-right btn-action" onclick="location.href='<?=base_url("login/logOut")?>'"">Log Out</button>
+                                                <button class="btn btn-sm pull-right btn-action">Log Out</button>
                                             </div>
                                         </div>
                                     </div>

@@ -32,10 +32,7 @@
                
                      <ul class="dropdown-menu dropdown-menu-right" style="width:245px;">
                           
-                              <li>
-                                 <a style="color: gray;padding:12px;" href="<?=base_url('mypurchase')?>">My Purchase</a>
-                              </li>
-                            
+                              
                               <li>
                                   <div class="navbar-content" style="padding:12px;">
                                       <div class="row"> 
@@ -46,6 +43,7 @@
                                               <span><?=$name;?></span>
                                                   <div class="divider">
                                               </div>
+                                              <span class="pull-right"><a style="color: gray;padding:12px; text-align: center;" href="<?=base_url('mypurchase')?>"><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Purchase</a></span>
                                           </div>
                                       </div>
                                   </div>
@@ -56,7 +54,7 @@
                                                   <button class="btn btn-default btn-sm">Change Password</button>
                                               </div>
                                               <div class="col-md-6">
-                                                  <button class="btn btn-sm pull-right btn-action">Log Out</button>
+                                                   <button class="btn btn-sm pull-right btn-action" onclick="location.href='<?=base_url("login/logOut")?>'"">Log Out</button> 
                                               </div>
                                           </div>
                                       </div>
@@ -87,7 +85,7 @@
                     <?php if($username){ ?>
                       <li><a style="color: gray; " href="<?=base_url('mypurchase')?>">My Purchase</a></li>
                       <li><a style="color: gray; ">Change Password</a></li>
-                      <li><a style="color: gray; ">Log Out</a></li> 
+                      <li><a href="<?=base_url("login/logOut")?>" style="color: gray; ">Log Out</a></li> 
                     <?php } else { ?>
                       <li><a style="color: gray;" href="<?=base_url('login');?>">Log in</a></li> 
 

@@ -297,7 +297,7 @@ function viewOrderListResponse(response){
         tr += "          <h6>"+ data[x].VariantName +"</h6>"
         tr += "        </div>"
         tr += "        <div class=\"col-xs-7\"> "
-        tr += "          <h4 style=\"color:#048e81;\">"+ data[x].Name +"</h4>  " 
+        tr += "          <h4 style=\"color:#172052;\">"+ data[x].Name +"</h4>  " 
         tr += "          <h6>Price:<br/> &#8369; "+ toMoney(data[x].Price) +" x "+ data[x].Quantity +"</h6>"
         tr += "          <h5>Total:<br/> &#8369; <strong>"+ toMoney(data[x].Total) +"</strong></h5>"
         tr += "        </div>"

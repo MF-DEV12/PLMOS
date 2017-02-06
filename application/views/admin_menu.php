@@ -16,9 +16,9 @@
                     <li data-content="suppliers" data-header="Suppliers"><a href="#">Suppliers</a></li>
                 </ul>
               </li> -->
-              <li data-content="supplier" data-menu="supplier" data-header="Supplier's Order">
+             <!--  <li data-content="supplier" data-menu="supplier" data-header="Supplier's Order">
                 <a>Supplier's Order</a>
-              </li>
+              </li> -->
               <li data-content="allorders" data-header="Customer's Order">
                 <a>Customer's Order</a>
               </li>
