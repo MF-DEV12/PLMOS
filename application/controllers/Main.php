@@ -202,6 +202,9 @@ class Main extends CI_Controller {
 			$data["categories"] = $this->getCategoryList();
 			$data["allorders"] = $this->getOrders("");
 
+			$data["bidding"] = $this->getBidding();
+			
+
 			$data["rptcustomers"] = $this->getCustomers();
 			$data["rptitems"] = $this->getRptItems();
 			// $data["neworders"] = $this->getOrders("New");
@@ -253,14 +256,16 @@ class Main extends CI_Controller {
 		elseif($table == "allorders")
 			$data = $this->getOrders(""); 
 
+		elseif($table == "bidding")
+			$data = $this->getBidding(); 
+
 		elseif($table == "categories")
 			$data = $this->getCategoryList();
 		elseif($table == "rptcustomers")
 			$data = $this->getCustomers();
 		elseif($table == "rptitems")
 			$data = $this->getRptItems();
-		  
-
+		
 		elseif($table == "requestlist")
 			$data = $this->GetRequestListFromAdmin(""); 
 		elseif($table == "pendingorders")
@@ -1121,6 +1126,20 @@ class Main extends CI_Controller {
 			$qry .= "WHERE o.OrderNo = '$orderno'";
 			$this->db->query($qry); 
 			$this->query_model->insertAuditLogs("Decrease Stock after Order to shipped", "Update");
+		}
+
+	///
+
+	// BIDDING
+		function getBidding(){
+			$this->param = $this->query_model->param;  
+
+			$this->param["table"] = "bidding"; 
+			$this->param["fields"] = "*"; 
+
+			$data["list"] =  $this->query_model->getData($this->param);
+			$data["fields"] = "BidCode|Bid Code,Description|Description,StartBidPrice|Start Price,BidPrice|Bid Price(per user),StartDate|Start Date,EndDate|End Date,CreatedDate|Date Created";
+			return $data;
 		}
 
 	///

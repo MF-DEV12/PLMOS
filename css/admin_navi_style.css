@@ -133,6 +133,9 @@ box-shadow: inset -5px 0 0 hsla(0, 0%, 0%, .2), inset 0 20px 0 #1a2561;
 #nav li[data-menu='inventory'] a:before{
     content: '\f16b';
 }
+#nav li[data-content='bidding'] a:before{
+    content: '\f080';
+}
 /*#nav li[data-content=forums] a:before{
     content: '\f1d7';
 }

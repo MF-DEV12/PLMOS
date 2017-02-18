@@ -435,6 +435,93 @@
                 <div class="content-list" data-content="removeditems"> 
                     <table class="display main-table" data-table="removeditems"> </table> 
                 </div>
+
+
+                <div class="content-list" data-content="bidding">
+                    <button id="btn-addbid" class="btn btn-action main-button btn-action-right"><span class="glyphicon glyphicon-plus"></span> New Bid</button>
+                    <div class="btn-group btn-child-group btn-group-mode btn-action-right">
+                        <button id="btn-bidcancel" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
+                        <button id="btn-bidsubmit" class="btn btn-action"><span class="glyphicon glyphicon-ok-circle"></span> Save</button>
+                    </div>
+                    <div class="btn-group btn-child-group btn-group-mode btn-action-right" style="z-index: 9;">
+                        <button id="btn-supplierback" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</button> 
+                    </div>
+                    <table class="display main-table" data-table="bidding"> </table>
+
+                    <div class="content-child">
+                        <div class="row group-1" style="padding: 114px;margin-top: 35px;">
+                             <div class="col-lg-12"> 
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel">Bid Code:</label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Bid Price(per user):</label>
+                                        </div> 
+                                    </div> 
+
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Description: </label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Start Date:</label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Start Price:</label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> End Date:</label>
+                                        </div> 
+                                    </div> 
+                                </div>
+
+                                <div class="row"> 
+                                  <div class="col-sm-12">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text" name="SupplierName" id="txt-suppliername" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel">Bid Code:</label>
+                                        </div> 
+                                  </div> 
+                                  <div id="biditemlist">
+                                    
+                                  </div>
+                                </div>
+ 
+                             </div> 
+                         </div>  
+                    </div>
+
+                </div>
         
                 <div class="content-list" data-content="rptitems"> 
                     <button class="btn btn-action main-button btn-action-right btn-print" data-print="generateListItems"><span class="glyphicon glyphicon-print"></span> Print</button>

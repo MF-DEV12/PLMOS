@@ -268,6 +268,22 @@ $(function(){
             
         })
 
+       $("#btn-addbid").click(function(e){
+            var elem = $(this)
+            toggleMainDisplay(false,elem,"New")
+
+            elem.closest(".content-list").find(".group-1").show()
+            elem.closest(".content-list").find(".group-1").find("input").val("") 
+
+        })
+
+        $("#btn-bidcancel").click(function(e){
+            var elem = $(this)
+            toggleMainDisplay(true,elem,"")  
+
+        })
+
+
     //Suppliers
         $("#btn-addsupplier").click(function(e){
             var elem = $(this)

@@ -34,6 +34,9 @@
                     <li data-content="removeditems" data-header="Removed Items"><a href="#">Removed Items</a></li>
                 </ul>
               </li>
+              <li data-content="bidding" data-header="Bidding">
+                <a>Bidding</a>
+              </li>
               
                <li data-menu="reports">
                 <a data-toggle="collapse" data-target="#reports" data-parent="#nav">Reports</a>

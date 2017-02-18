@@ -29,7 +29,56 @@ CREATE TABLE `accounts` (
 
 /*Data for the table `accounts` */
 
-insert  into `accounts`(`AccountNo`,`LastName`,`FirstName`,`Username`,`Password`,`LoginType`) values (1,NULL,NULL,'Rolen','5f4dcc3b5aa765d61d8327deb882cf99','admin'),(2,NULL,NULL,'JMDMktg','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(3,NULL,NULL,'VEEnt','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(4,NULL,NULL,'Voschtech','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(5,NULL,NULL,'DJZTrd','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(6,NULL,NULL,'Solarfoam','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(7,NULL,NULL,'HGCECo','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(8,NULL,NULL,'mtest','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(9,NULL,NULL,'TestEmail','25d55ad283aa400af464c76d713c07ad','supplier'),(10,NULL,NULL,'testabc','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(11,'test','abc','test@yahoo.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(12,NULL,NULL,NULL,'5f4dcc3b5aa765d61d8327deb882cf99','customer'),(13,NULL,NULL,'test@abc.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(16,NULL,NULL,'test@abc.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(19,NULL,NULL,'test@abc.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(20,NULL,NULL,'test@test.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(29,'ra','asd','friazmarkanthony@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99','customer');
+insert  into `accounts`(`AccountNo`,`LastName`,`FirstName`,`Username`,`Password`,`LoginType`) values (1,NULL,NULL,'Legacy','5f4dcc3b5aa765d61d8327deb882cf99','admin'),(2,NULL,NULL,'JMDMktg','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(3,NULL,NULL,'VEEnt','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(4,NULL,NULL,'Voschtech','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(5,NULL,NULL,'DJZTrd','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(6,NULL,NULL,'Solarfoam','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(7,NULL,NULL,'HGCECo','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(8,NULL,NULL,'mtest','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(9,NULL,NULL,'TestEmail','25d55ad283aa400af464c76d713c07ad','supplier'),(10,NULL,NULL,'testabc','5f4dcc3b5aa765d61d8327deb882cf99','supplier'),(11,'test','abc','test@yahoo.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(12,NULL,NULL,NULL,'5f4dcc3b5aa765d61d8327deb882cf99','customer'),(13,NULL,NULL,'test@abc.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(16,NULL,NULL,'test@abc.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(19,NULL,NULL,'test@abc.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(20,NULL,NULL,'test@test.com','5f4dcc3b5aa765d61d8327deb882cf99','customer'),(29,'ra','asd','friazmarkanthony@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99','customer');
+
+/*Table structure for table `bidding` */
+
+DROP TABLE IF EXISTS `bidding`;
+
+CREATE TABLE `bidding` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BidCode` varchar(10) DEFAULT NULL,
+  `Description` text,
+  `StartBidPrice` double(10,2) DEFAULT NULL,
+  `BidPrice` double(10,2) DEFAULT NULL,
+  `StartDate` datetime DEFAULT NULL,
+  `EndDate` datetime DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModifiedDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`),
+  UNIQUE KEY `BidCode` (`BidCode`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `bidding` */
+
+/*Table structure for table `biddingbyusers` */
+
+DROP TABLE IF EXISTS `biddingbyusers`;
+
+CREATE TABLE `biddingbyusers` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BidItemID` int(11) DEFAULT NULL,
+  `CustomerNo` int(11) DEFAULT NULL,
+  `CreatedDate` datetime DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `biddingbyusers` */
+
+/*Table structure for table `biddingitems` */
+
+DROP TABLE IF EXISTS `biddingitems`;
+
+CREATE TABLE `biddingitems` (
+  `ID` int(11) NOT NULL AUTO_INCREMENT,
+  `BidID` int(11) DEFAULT NULL,
+  `ItemNumber` int(11) DEFAULT NULL,
+  `VariantNo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`ID`),
+  KEY `ID` (`ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `biddingitems` */
 
 /*Table structure for table `customer` */
 
@@ -51,7 +100,7 @@ CREATE TABLE `customer` (
 
 /*Data for the table `customer` */
 
-insert  into `customer`(`CustomerNo`,`CustomerType`,`Lastname`,`Firstname`,`CompanyName`,`ContactNo`,`Email`,`HomeAddress`,`ShipAddress`,`CreatedDate`) values (26,NULL,'Friaz','Mark Anthony',NULL,'9278912149','friazmarkanthony@gmail.com','Block 4 Lot 14 Oregon St. Phase 7 Palmera Homes Northwinds San Jose Del Monte Bulacan','Block 4 Lot 14 Oregon St. Phase 7 Palmera Homes Northwinds San Jose Del Monte Bulacan','2017-01-19 15:45:51'),(27,NULL,'test','test',NULL,'9278912149','test@abc.com','test, test','test','2017-01-19 22:42:08'),(28,NULL,'tesss','teas',NULL,'9278912149','test@test.com','test, test','test','2017-01-19 22:45:34'),(29,NULL,'tedt','test',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-02 23:49:03'),(30,NULL,'tedt','test',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-02 23:50:41'),(31,NULL,'tedt','test',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-02 23:51:29'),(32,NULL,'tedt','test',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-02 23:53:03'),(33,NULL,'Friaz','Mark Anthony',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-03 00:13:02'),(34,NULL,'te','te',NULL,'12313','friazmarkanthony@gmail.com','tes','test','2017-02-03 01:01:11'),(35,NULL,'esa','awa',NULL,'awr','friazmarkanthony@gmail.com','test','test','2017-02-03 01:04:26'),(36,NULL,'rt','w',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-06 21:59:46'),(37,NULL,'ra','asd',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-06 22:01:37');
+insert  into `customer`(`CustomerNo`,`CustomerType`,`Lastname`,`Firstname`,`CompanyName`,`ContactNo`,`Email`,`HomeAddress`,`ShipAddress`,`CreatedDate`) values (27,NULL,'test','test',NULL,'9278912149','test@abc.com','test, test','test','2017-01-19 22:42:08'),(28,NULL,'tesss','teas',NULL,'9278912149','test@test.com','test, test','test','2017-01-19 22:45:34'),(37,NULL,'ra','asd',NULL,'0927891214','friazmarkanthony@gmail.com','test','test','2017-02-06 22:01:37');
 
 /*Table structure for table `family` */
 
@@ -133,7 +182,7 @@ CREATE TABLE `itemvariant` (
   `SRemoved` tinyint(4) DEFAULT NULL,
   `ImageFile` text,
   PRIMARY KEY (`VariantNo`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `itemvariant` */
 
@@ -369,7 +418,7 @@ CREATE TABLE `tblorder` (
 
 /*Data for the table `tblorder` */
 
-insert  into `tblorder`(`CustomerNo`,`OrderNo`,`ShipAddress`,`TotalAmount`,`Date`,`Ship`,`Status`,`SalesNo`,`TransactionDate`) values (26,00000001,'test',112.22,'2017-02-02 23:53:03',1,'Ship',NULL,'2017-02-06 22:33:22'),(26,00000002,'test',1012.22,'2017-02-03 00:13:02',1,'Ship',NULL,'2017-02-06 22:33:24'),(26,00000003,'test',300.00,'2017-02-03 01:01:11',1,'Ship',NULL,'2017-02-06 22:33:26'),(26,00000004,'test',4012.22,'2017-02-03 01:04:26',0,'Process',NULL,'2017-02-06 22:33:11'),(26,00000005,'test',300.00,'2017-02-06 21:59:46',0,'Process',NULL,'2017-02-06 22:33:13'),(26,00000006,'test',300.00,'2017-02-06 22:01:37',0,'Process',NULL,'2017-02-06 22:33:14');
+insert  into `tblorder`(`CustomerNo`,`OrderNo`,`ShipAddress`,`TotalAmount`,`Date`,`Ship`,`Status`,`SalesNo`,`TransactionDate`) values (NULL,00000001,'test',112.22,'2017-02-02 23:53:03',1,'Ship',NULL,'2017-02-06 22:33:22'),(NULL,00000002,'test',1012.22,'2017-02-03 00:13:02',1,'Ship',NULL,'2017-02-06 22:33:24'),(NULL,00000003,'test',300.00,'2017-02-03 01:01:11',1,'Ship',NULL,'2017-02-06 22:33:26'),(NULL,00000004,'test',4012.22,'2017-02-03 01:04:26',0,'Process',NULL,'2017-02-06 22:33:11'),(NULL,00000005,'test',300.00,'2017-02-06 21:59:46',0,'Process',NULL,'2017-02-06 22:33:13'),(NULL,00000006,'test',300.00,'2017-02-06 22:01:37',0,'Process',NULL,'2017-02-06 22:33:14');
 
 /*Table structure for table `tblorderdetails` */
 
