@@ -6,7 +6,7 @@
     <?php $view = $this->session->userdata("itemfor"); ?>
 
       
-    <title><?=(($view) ? (($view==1) ? "What we Sell" : "What we Buy") : "Products");?> - <?=COMPANY_NAME;?></title>
+    <title>Bid items - <?=COMPANY_NAME;?></title>
 
 
     <link href="<?=base_url('css/homestyle/bootstrap.min.css');?>" rel="stylesheet">
@@ -94,7 +94,7 @@
         </div>
           
         <div class="heading text-center col-xs-12 col-sm-12 col-md-9 col-lg-9 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h2 style="text-align: left;"><?=(($view) ? (($view==1) ? "What we Sell" : "What we Buy") : "");?></h2>
+            <h2 style="text-align: left;">Bid Opportunities</h2>
           
         <?php if(count($family) > 0){ ?>
           <ol class="breadcrumb item-header">
@@ -107,18 +107,23 @@
         <?php } ?>
         <div class="row list-items">
           <?php if($items){ ?>
-            <?php foreach($items as $key) {?>
+            <?php foreach($items as $key) {?> 
                  <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item" title="Click to view">
                       <div class="row">
-                        <div class="col-sm-12 item-holder"  onclick="viewItems('<?=$key->ItemNumber?>');">
-                          <img width="200px" height="200px" src="images/variant-folder/<?=$key->ImageFile?>" alt="" onerror="this.src='<?=base_url("images/noimage.gif")?>';"/>
+                        <div class="col-sm-12 item-holder"  onclick="bidItemsView('<?=$key->ID?>');">
+                          <img width="200px" height="200px" src="<?=base_url('images/variant-folder/' . $key->ImageFile)?>" alt="" onerror="this.src='<?=base_url("images/noimage.gif")?>';"/>
                           <h5><?=$key->Name?></h5>
                           <p class="category"><?=$key->Category?></p>
-                          <h6><?=(($key->Stocks > 0) ? "Stock: " . $key->Stocks : "Out of Stocks");?></h6>
-                          <b>Price: &#8369; <?=number_format($key->Price,2)?></b>
+                          <strong class="bidprice" id="bidprice<?=$key->ID;?>">&#8369; <?=$key->CurrentBidPrice?></strong> <br/>
+                          <p class="lastbid" id="lastbid<?=$key->ID?>"> </span> <span id="lastbid<?=$key->ID?>"><?=$key->LastBidUser;?></span> </p>
+                          <div class="timer-holder">
+                          <span class="glyphicon glyphicon-time"></span>
+                          <span class="bidtimer" id="tmr<?=$key->ID;?>"  data-range='<?=json_encode($key);?>'><span>
+                          </div>
                         </div>
+
                         <div class="col-sm-12">
-                          <button class="btn btn-action btn-buy"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#confirmcart" onclick="orderItem('<?=$key->ItemNumber?>');"  style="width:100%;" <?=(($key->Stocks > 0) ? "": "disabled");?>>Buy</button> 
+                          <button class="btn btn-action btn-bid" onclick="bidItemByUsers('<?=$key->ID?>',this);"  style="width:100%;">BID</button> 
                         </div> 
                       </div>
                    </div>
@@ -173,58 +178,17 @@
     </div>
 </footer>
 
-
-  <div class="modal fade" id="confirmcart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-size: 20px;">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          
-          <div class="modal-body">
-              <h4 style="color:#048e81;"><span class="glyphicon glyphicon-ok"></span> This item has been added to your cart.</h4>
-              <div class="row">
-                <div class="col-xs-12 col-md-6 item-wrap">
-                    <div class="row">
-                        <div class="col-xs-5 col-md-5">
-                          <img src="<?=base_url('');?>" class="cart-img" width="80px" height="80px"/>
-                        </div>
-                        <div class="col-xs-7 col-md-7">
-                          <h4><name></name></h4>
-                          <h6><category></category></h6>
-                          <h5>&#8369; <price></price></h5>
-                        </div>
-                    </div>
-                </div> 
-
-                <div class="col-xs-12 col-md-6" style="border-left: 1px solid #ddd; padding-top: 10px;">
-                    <h5>My Shopping Cart <a href="<?=base_url('items/cart')?>" title="Click to view your cart"><carttotal></carttotal> item(s)</a> </h5>
-                    <dl style="font-size: 12px;">
-                      <dd style="padding: 10px 2px; border-bottom: 1px solid #ddd; border-top: 1px solid #ddd;">
-                        Subtotal: <span class="pull-right">&#8369; <subtotal></subtotal></span>
-                      </dd>
-
-                      <dd style="padding: 4px 2px; font-size: 14px !important;">
-                        Total: <span class="pull-right">&#8369; <b><total></total></b></span>
-                      </dd>
-
-                    </dl>
-                </div> 
-              </div>
-          </div>
-          <div class="modal-footer">
-            <a type="button" class="btn btn-default" data-dismiss="modal">Continue to Shopping</a>
-            <button type="button" class="btn btn-action" id="btn-proceed">Proceed to Checkout</button>
-          </div>
-        </div>
-      </div>
-  </div>
+ 
 </div> 
 
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/bootstrap.min.js")?>"></script>
+      <script type="text/javascript" src="<?=base_url("js/bootbox.min.js")?>"></script>
       <script type="text/javascript" src='<?=base_url("js/utility/ajaxCall.js")?>'></script>
       <script type="text/javascript" src='<?=base_url("js/maskMoney.js")?>'></script>
       <script type="text/javascript" src='<?=base_url("js/utility/helpers.js")?>'></script>
  
-      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+      <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=<?=GPS_API;?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.inview.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/wow.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/mousescroll.js")?>"></script>
@@ -233,9 +197,10 @@
       <script type="text/javascript" src="<?=base_url("js/homestyle/lightbox.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/main.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/side-menu/side-menu.js")?>"></script>
-      <script type="text/javascript" src="<?=base_url("js/customerorder.js")?>"></script>
+      <script type="text/javascript" src="<?=base_url("js/jquery.countdownTimer.min.js")?>"></script>
+      <script type="text/javascript" src="<?=base_url("js/biditems.js")?>"></script>
 
-      
+     
 
 
  

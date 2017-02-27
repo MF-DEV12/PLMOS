@@ -59,8 +59,8 @@ dl.categories-wrap > dd{
 }
 
 dl.list-family span.data-edit{
-    position: absolute;
-    top: 56px;
+  /*  position: absolute;
+    top: 56px;*/
     font-size: 14px;
     font-weight: bold;
 }
@@ -188,6 +188,14 @@ min-height: 20px; /* or whatever height you need to make them all consistent */
   text-align: right;
   margin: 0px;
 }
+p.error{
+  color: red;
+  font-size: 12px; 
+  margin: 0px;
+  margin-top: -48px;
+  position: absolute;
+}
+
 
 span.badge {
     position: absolute;
@@ -645,6 +653,27 @@ button#btn-add:after {
     display: none;
 }
 
+/*BIDDING*/
+div#biditemlist{
+    font-size: 12px; 
+}
+
+table[data-table=biditemlist] thead th:first-child,
+table[data-table=biditemlist] tbody td:first-child{
+  width: 10px !important;
+  text-align: center;
+}
+
+table[data-table=biditemlist] thead th:nth-child(2),
+table[data-table=biditemlist] tbody td:nth-child(2){
+  width: 70px !important; 
+}
+
+
+
+tr.checked {
+    background-color: #e4e8ff !important;
+}
 
 /* MOBILE VIEW*/
  @media screen and (max-width: 767px) {
@@ -888,7 +917,9 @@ div.item-review-wrap{
 
 
 /* active state */
-.inputMaterial:focus ~ label.formlabel , .inputMaterial:valid ~ label.formlabel       {
+.inputMaterial:focus ~ label.formlabel , 
+.inputMaterial.read ~ label.formlabel , 
+.inputMaterial:valid ~ label.formlabel       {
   top:-20px;
   font-size:14px;
   color: #172052;

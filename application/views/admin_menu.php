@@ -16,9 +16,9 @@
                     <li data-content="suppliers" data-header="Suppliers"><a href="#">Suppliers</a></li>
                 </ul>
               </li> -->
-              <li data-content="supplier" data-menu="supplier" data-header="Supplier's Order">
+             <!--  <li data-content="supplier" data-menu="supplier" data-header="Supplier's Order">
                 <a>Supplier's Order</a>
-              </li>
+              </li> -->
               <li data-content="allorders" data-header="Customer's Order">
                 <a>Customer's Order</a>
               </li>
@@ -33,6 +33,9 @@
                     <li data-content="categories" data-header="Categories"><a href="#">Categories</a></li>
                     <li data-content="removeditems" data-header="Removed Items"><a href="#">Removed Items</a></li>
                 </ul>
+              </li>
+              <li data-content="bidding" data-header="Bidding">
+                <a>Bidding</a>
               </li>
               
                <li data-menu="reports">

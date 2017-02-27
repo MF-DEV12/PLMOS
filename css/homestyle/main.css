@@ -1,3 +1,5 @@
+@import url("../montserrat/montserrat.css");
+@import url("../font-awesome-4.7.0/css/font-awesome.css");
 /*
   Theme Name: Oxygen
   Theme Uri: http://www.themeum.com
@@ -1170,6 +1172,12 @@ div.item-holder:hover + div button.btn-buy, button.btn-buy:hover{
   transition: background 0.5s ease;
 }
 
+div.item-holder:hover + div button.btn-bid, button.btn-bid:hover{
+  color:white;
+  background: #172052;
+  transition: background 0.5s ease;
+}
+
 button.btn-addtocart{
   width: auto !important;
 }
@@ -1379,3 +1387,49 @@ div.alert-success{
 .list-items h6{
   margin: 0px;
 }
+
+span.bidtimer {
+  /*color: red;*/
+  font-weight: bold;
+  font-size:  16px;
+}
+
+ span.glyphicon-time{
+  /*color:  red;*/
+ }
+
+ p.lastbid.focus{
+    
+    background-color: #cfd7ff; 
+     -webkit-transition: background-color 0.5s ease;
+    -moz-transition: background-color 0.5s ease;
+    -o-transition: background-color 0.5s ease;
+    -khtml-transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease;
+ }
+
+
+ p.lastbid{
+   background-color: transparent;   
+     -webkit-transition: background-color 0.5s ease;
+    -moz-transition: background-color 0.5s ease;
+    -o-transition: background-color 0.5s ease;
+    -khtml-transition: background-color 0.5s ease;
+    transition: background-color 0.5s ease;
+ }
+
+ div.timer-holder.progressbid span{
+  color: #172052;
+ }
+
+ div.timer-holder.soldbid span{
+  color: #ccc;
+ }
+
+ div.timer-holder.lastminutes span{
+  color: #f44336;
+ }
+
+ tr.curbiduser{
+  background-color: #efefef;
+ }

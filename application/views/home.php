@@ -119,9 +119,7 @@
                    <li class="dropdown account-desktop"><a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color:white;"><span class="glyphicon glyphicon-user"></span></span>
                         <b class="caret"></b></a>
                         <ul class="dropdown-menu" style="width:245px;">
-                            <li>
-                               <a style="color: gray;padding:12px;" href="<?=base_url('mypurchase')?>">My Purchase</a>
-                            </li>
+                           
                             <li>
                                 <div class="navbar-content" style="padding:12px;">
                                     <div class="row"> 
@@ -131,9 +129,8 @@
                                         <div class="col-md-9">
                                             <span><?=$name;?></span>
                                             <!-- <p class="text-muted small role"><?=$role;?></p> -->
-                                            <div class="divider">
-                                            </div>
-                                            <!-- <a href="#" class="btn btn-primary btn-sm active">View Profile</a> -->
+                                            <div class="divider"> </div> 
+                                            <span class="pull-right"><a href="<?=base_url('mypurchase')?>"  style="color: gray;padding:12px;text-align: right; text-transform: capitalize;font-weight: 100;"><i class="fa fa-shopping-cart" aria-hidden="true"></i> My Purchase</a></span>
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +141,7 @@
                                                 <button class="btn btn-default btn-sm">Change Password</button>
                                             </div>
                                             <div class="col-md-6">
-                                                <button class="btn btn-sm pull-right btn-action">Log Out</button>
+                                                <button class="btn btn-sm pull-right btn-action" onclick="location.href='<?=base_url("login/logOut")?>'"">Log Out</button>
                                             </div>
                                         </div>
                                     </div>
@@ -446,7 +443,7 @@
                 <li>100GB Bandwith</li>
                 <li>5 Products</li>
               </ul> -->
-              <a href="#" class="btn btn-lg btn-primary">Bid Now</a>
+              <a href="<?=base_url('biditems');?>" class="btn btn-lg btn-primary">Bid Now</a>
             </div>
           </div>
           

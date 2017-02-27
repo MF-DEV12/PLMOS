@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="<?=base_url('css/style.css');?>"> <!-- Resource style -->
     <link rel="stylesheet" href="<?=base_url('css/admin_navi_style.css');?>"> <!-- Resource style -->
     <link rel="stylesheet" href="<?=base_url('css/stepnavi.css');?>"> <!-- Resource style -->
+    <link rel="stylesheet" href="<?=base_url('js/bootcomplete/bootcomplete.css');?>"> <!-- Resource style -->
 
     <link href="<?=base_url('js/bootstrap-datepicker/css/bootstrap-datetimepicker.css');?>" rel="stylesheet" type="text/css" />
 </head>
@@ -240,6 +241,7 @@
     <script type="text/javascript" src='<?=base_url("js/maskMoney.js")?>'></script>
     <script type="text/javascript" src='<?=base_url("js/highcharts.js")?>'></script>
     <script type="text/javascript" src='<?=base_url("js/tagsinput/bootstrap-tagsinput.js")?>'></script>
+    <script type="text/javascript" src='<?=base_url("js/bootcomplete/jquery.bootcomplete.js")?>'></script>
     <script src="<?=base_url('js/scripts/admin.js');?>"></script>   
     <script src="<?=base_url('js/navside/main.js');?>"></script>   
 

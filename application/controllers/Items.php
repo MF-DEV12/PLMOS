@@ -45,6 +45,45 @@ class Items extends CI_Controller {
  		$this->load->view('items',$data);
  	}
 
+ 	function biditems(){
+		$data['username'] = $this->session->userdata("username");
+		$data['role'] = $this->session->userdata("role");
+		$data['name'] = $this->session->userdata("name");
+ 		$level1no = $this->input->get("family");
+ 		$level2no = $this->input->get("category");
+ 		$level3no = $this->input->get("subcategory");
+ 		$itemfor = $this->input->get("for");
+ 		if(isset($itemfor))
+ 			$this->session->set_userdata('itemfor',$itemfor);
+ 		else
+ 			$this->session->unset_userdata('itemfor');
+
+ 		$item = $this->input->get("name");
+ 		$data["family"] = ($level1no) ? $this->getFamilyName($level1no) : array();
+ 		$data["category"] = ($level2no) ? $this->getCategoryName($level2no) : array();
+ 		$data["subcategory"] = ($level3no) ? $this->getSubCategoryName($level2no) : array();
+ 		$data["listfamily"] = $this->getListFamily();
+ 		$data["listcategory"] = $this->getCategoryByFamily();
+ 		$data["listsubcategory"] = $this->getSubCategory();
+ 		// $this->session->sess_destroy();
+
+ 		// Get Items
+ 		$id = "{"; 
+ 		$id .= ($level1no) ? "\"l1\": \"$level1no\"" : ""; 
+ 		$id .= ($level2no) ? ",\"l2\": \"$level2no\"" : ""; 
+ 		$id .= ($level3no) ? ",\"l3\": \"$level3no\"" : ""; 
+ 		$id .= ($item) ? "\"name\": \"$item\"" : ""; 
+ 		$id .= "}"; 
+ 		$data["items"] = $this->getItemsForBid($id);
+
+ 		$listItemsInCart = $this->session->userdata("cartitems");
+ 		$data["totalItemCart"] = ($listItemsInCart) ? count($listItemsInCart) : "";
+
+ 		$this->load->view('biditems',$data);
+ 	}
+
+ 	
+
  	function getFamilyName($level1no = ""){ 
  		$this->param = $this->query_model->param; 
  		$this->param["table"] = "level1";
@@ -158,6 +197,38 @@ class Items extends CI_Controller {
 			$this->param["conditions"] .= (($this->param["conditions"] != "") ? " AND " : "") ." ItemFor = $itemfor ";
 
 		$this->param["groups"] = "ItemNo, ItemNoV";
+		$this->param["order"] = "Name";
+		 
+		$result =  $this->query_model->getData($this->param);
+
+
+		// die($this->db->last_query());
+		return $result;
+ 	}
+
+ 	function getItemsForBid($id){
+ 		$data = $id; 
+ 		$data = json_decode($data);
+ 		$itemfor = $this->session->userdata("itemfor");
+ 		$itemfor = ($itemfor) ? $itemfor : "";
+ 		$this->param = $this->query_model->param; 
+ 		$this->param["table"] = "vw_biditems";
+ 		$this->param["fields"] = "*";
+		$this->param["conditions"] = "";
+		if(isset($data->l1))
+			$this->param["conditions"] .= " Level1No = '$data->l1'";
+		if(isset($data->l2))
+			$this->param["conditions"] .= " AND Level2No = '$data->l2'";
+		if(isset($data->l3))
+			$this->param["conditions"] .= " AND Level3No = '$data->l3'";
+
+
+		if(isset($data->name))
+			$this->param["conditions"] .= " Name like '%$data->name%'";
+		if($itemfor!="")
+			$this->param["conditions"] .= (($this->param["conditions"] != "") ? " AND " : "") ." ItemFor = $itemfor ";
+
+		// $this->param["groups"] = "ItemNo, ItemNoV";
 		$this->param["order"] = "Name";
 		 
 		$result =  $this->query_model->getData($this->param);

@@ -435,6 +435,95 @@
                 <div class="content-list" data-content="removeditems"> 
                     <table class="display main-table" data-table="removeditems"> </table> 
                 </div>
+
+
+                <div class="content-list" data-content="bidding">
+                    <button id="btn-addbid" class="btn btn-action main-button btn-action-right"><span class="glyphicon glyphicon-plus"></span> New Bid</button>
+                    <div class="btn-group btn-child-group btn-group-mode btn-action-right">
+                        <button id="btn-bidcancel" class="btn btn-default"><span class="glyphicon glyphicon-ban-circle"></span> Cancel</button>
+                        <button id="btn-bidsubmit" class="btn btn-action"><span class="glyphicon glyphicon-ok-circle"></span> Save</button>
+                    </div>
+                    <div class="btn-group btn-child-group btn-group-mode btn-action-right" style="z-index: 9;">
+                        <button id="btn-supplierback" class="btn btn-default"><span class="glyphicon glyphicon-menu-left"></span> Back</button> 
+                    </div>
+                    <table class="display main-table" data-table="bidding"> </table>
+
+                    <div class="content-child">
+                        <div class="row group-1" style="padding: 114px;margin-top: 35px;">
+                             <div class="col-lg-6" style="background: white;padding: 60px 45px 317px;"> 
+                                <div class="row" id="bid-panel">
+                                    <div class="col-sm-8">
+                                          <div class="group">      
+                                            <input class="inputMaterial read" type="text" id="txt-bidcode" required>
+                                            <span class="highlight"></span>
+                                            <span class="bar"></span>
+                                            <label class="formlabel">Bid Code:</label>
+                                          </div> 
+                                    </div> 
+                                    <div class="col-sm-12">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text"  id="txt-biddesc" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Description: </label>
+                                        </div> 
+                                    </div> 
+                                    
+
+                                    
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text"  id="dt-bidstartdate" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Start Date:</label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial" type="text"  id="dt-bidenddate" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> End Date:</label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial numeric" type="text" id="txt-startprice" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Start Price:</label>
+                                        </div> 
+                                    </div> 
+                                    <div class="col-sm-6">
+                                        <div class="group">      
+                                          <input class="inputMaterial numeric" type="text" id="txt-bidprice" required>
+                                          <span class="highlight"></span>
+                                          <span class="bar"></span>
+                                          <label class="formlabel"> Bid Price(per user):</label>
+                                        </div> 
+                                    </div> 
+                                   
+                                </div>
+
+                                
+ 
+                             </div> 
+                             <div class="col-lg-6"> 
+                                <div class="row" > 
+                                  <div class="col-sm-12" style="margin-bottom: -25px;">
+                                      <div id="biditemlist">
+                                        <h4>Select the item to bid:</h4><span class="pull-right" style="color:#1a2561;"><selbiditems>0</selbiditems> item(s) selected</span>
+                                         <table class="display main-table" data-table="biditemlist"></table>
+                                      </div>
+                                  </div> 
+                                   
+                                </div>
+                            </div>
+                         </div>  
+                    </div>
+
+                </div>
         
                 <div class="content-list" data-content="rptitems"> 
                     <button class="btn btn-action main-button btn-action-right btn-print" data-print="generateListItems"><span class="glyphicon glyphicon-print"></span> Print</button>

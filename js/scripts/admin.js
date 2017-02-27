@@ -5,6 +5,8 @@ $(function(){
 	callAjaxJson("main/initializeAllData", new Object(), bindingDatatoDataTable, ajaxError)
     bindingDataChart();
 
+
+
 // PURCHASE ORDER
     // Purchase Order
         $("#btn-addrequest").click(function(){
@@ -267,6 +269,9 @@ $(function(){
             }
             
         })
+
+    
+
 
     //Suppliers
         $("#btn-addsupplier").click(function(e){
@@ -925,6 +930,8 @@ $(function(){
             bootbox.prompt(promptOptions); 
         })
 
+
+
         $("#table-attribute tbody").on("click", "td a.delete-attribute",function(e){
             var elem = $(this)
             var tr = elem.closest("tr")
@@ -1221,6 +1228,138 @@ $(function(){
         })
 
 
+
+        //BIDDING
+       
+        var listbidding = new Object();
+        var arrListbid = new Object();
+        arrListbid.list = "";
+        arrListbid.fields = "Action|,ItemNumber|Item No,Description|Item name"
+        listbidding["biditemlist"] = arrListbid;
+        bindingDatatoDataTable(listbidding)
+        var table = listObjTableBinded["biditemlist"]
+        // table.row.add(data).draw()
+        table.draw()
+        
+        $('table[data-table="bidding"]').on('click', 'tr[role=row] td:first-child', function () { 
+            var elem = $(this)
+            var tr = elem.closest('tr');
+            var table = listObjTableBinded["bidding"]
+            var data = table.rows(tr).data()
+            data = data[0]
+            elem.find('span').attr('class','glyphicon glyphicon-menu-down pull-right')
+            var row = table.row( tr );
+            var trExists = $("table[data-table=bidding] tr.shown")
+            trExists.find('td:first-child > span').attr('class','glyphicon glyphicon-menu-right pull-right')
+            var rowExists = table.row( trExists );
+    
+            if ( row.child.isShown() ) {
+                row.child.hide();
+                elem.find('span').attr('class','glyphicon glyphicon-menu-right pull-right')
+                tr.removeClass('shown');
+            }
+            else{
+                var param = new Object();
+                param.bidcode = data.BidCode
+
+                callAjaxJson("main/GetBidItemsByBidCode", param, 
+                    function(response){
+                        var div = $("<div/>") 
+                            div.attr("class","childtable-wrap") 
+                        if(response["child-" +  data.BidCode].list.length){ 
+                        
+                            var childtable = $("<table/>")
+                            // div.append("<button class=\"btn btn-action pull-right btn-editvariants\" style=\"width:100px;\" onclick=\"editVariant('"+  data.ItemNo +"','"+ data.Name +"')\"><span class=\"glyphicon glyphicon-cog\"></span> Edit Variants</button>")
+                            div.append("<h5 class=\"dash-header sub\">List of item(s) to bid:</h5>")
+                            childtable
+                                .attr("id","child-"+data.BidCode)
+                                .attr("class","display")
+                                .addClass("childtable")
+                                .data("table","child-"+data.BidCode) 
+ 
+                            bindingDataViewingBidItems(response,childtable)
+                            div.append(childtable)
+                        }
+                        else{
+                            div.append("<h5>No bid items(s) found.</h5>")
+
+                        }
+
+                        if ( rowExists.child.isShown() ) {
+                             rowExists.child.hide();
+                             trExists.removeClass('shown');
+                        }  
+                        row.child(div).show();
+                        tr.addClass("shown")
+
+                    }, 
+                ajaxError)  
+            } 
+        })
+       
+
+        $("#btn-addbid").click(function(e){
+            var elem = $(this)
+            toggleMainDisplay(false,elem,"New")
+            callAjaxJson("main/getItemsForBid", new Object(), bindingDatatoDataTable, ajaxError)
+
+            elem.closest(".content-list").find(".group-1").show()
+            elem.closest(".content-list").find(".group-1").find("input").val("") 
+            $("input#txt-bidcode").val(generateBidCode())
+            $("input#txt-bidcode").prop("readonly",true)
+
+        })
+
+        $("#btn-bidcancel").click(function(e){
+            var elem = $(this)
+            toggleMainDisplay(true,elem,"")  
+
+        }) 
+
+        $("button#btn-bidsubmit").click(function(e){
+    
+            if(!validateBid()) { return }
+          
+
+            var data = new Object()
+            var itemlist = new Array();
+
+            data.BidCode = $("input#txt-bidcode").val()
+            data.Description = $("input#txt-biddesc").val()
+            data.StartBidPrice = toMoneyValue($("input#txt-startprice").val())
+            data.StartDate = $("input#dt-bidstartdate").val()
+            data.EndDate = $("input#dt-bidenddate").val()
+            data.BidPrice = toMoneyValue($("input#txt-bidprice").val())
+
+
+            $("input.chkBidItems:checked").each(function(e){
+                var elem = $(this)
+                var tr = elem.closest("tr")
+                var table = listObjTableBinded["biditemlist"]
+                var trData = table.rows(tr).data();
+                trData = trData[0];
+                var paramItem = new Object()
+                
+                paramItem.ItemNo = trData.ItemNo;
+                paramItem.VariantNo = trData.VariantNo;
+                itemlist.push(paramItem)
+            })
+            var param = new Object();
+            param.items = JSON.stringify(itemlist);
+            param.data = JSON.stringify(data);
+
+            callAjaxJson("main/addBid", param, 
+                function(response){
+                    if(response){
+                        $("#btn-bidcancel").click();
+                        bindingDatatoDataTable(response)
+                        bootbox.alert("New bid has been created.",function(){})
+
+                    }
+
+                }, ajaxError)
+
+        })
 
 
 })
@@ -1748,13 +1887,8 @@ $(function(){
         if(!isOkay)
             $("input#txt-uomdesc").closest("div.group").after("<p class=\"label-error\">Please input all fields.</p>")
         return isOkay
-    }
-
-
-
-
-
-//ORDERS
+    } 
+// ORDERS
      function processOrder(orderNo){
         bootbox.confirm("Do you want to process this order number? <br/><b>#" + orderNo + "</b>", function(result){
             if(result)
@@ -1806,7 +1940,70 @@ $(function(){
         }, ajaxError)
 
      }
+// BIDDING
+    function generateBidCode(){
+        var bidcode = "LEGBID-" 
 
+        var d = new Date();
+
+        bidcode += d.getFullYear();
+        bidcode += d.getMonth();
+        bidcode += d.getDate();
+        bidcode += d.getHours();
+        bidcode += d.getMinutes(); 
+
+        return bidcode;
+    }
+
+    function chkAllbidItem(elem){
+        elem = $(elem)
+        $("input.chkBidItems").prop("checked",elem.prop("checked"))
+        if(elem.prop("checked"))
+            $("input.chkBidItems").closest("tr").addClass("checked")
+        else
+            $("input.chkBidItems").closest("tr").removeClass("checked")
+
+        $("selbiditems").text($("input.chkBidItems:checked").length)
+    }
+
+    function chkbidItem(elem){
+        elem = $(elem)
+        var tr = elem.closest("tr")
+        if(elem.prop("checked"))
+            tr.addClass("checked")
+        else
+            tr.removeClass("checked")
+
+      $("selbiditems").text($("input.chkBidItems:checked").length)
+    }
+
+    function validateBid(){
+        var isOkay = true;
+        $("div#bid-panel").prev("p.error").remove()
+        $("div#bid-panel input.inputMaterial").each(function(e){
+            var elem = $(this)
+
+            if($.trim(elem.val()).length == 0){
+                isOkay = false
+                return;
+            }
+
+        })
+
+        if(!isOkay)
+             $("div#bid-panel").before("<p class=\"error\">Please input all these fields.</p>");
+        else{
+
+            if($("input.chkBidItems:checked").length == 0){
+                $("div#bid-panel").before("<p class=\"error\">Must check the item(s) to bid atleast one item.</p>");
+                isOkay = false
+            }
+
+        }
+
+         
+        return isOkay;
+    }
 
 function bindingDatatoDataTable(response){
 	var data = response
@@ -1974,6 +2171,36 @@ function bindingDataViewingVariants(response,table){
     } 
 }
 
+function bindingDataViewingBidItems(response,table){
+    var data = response
+     for(x in data){  
+        var list = data[x].list
+        if(list){
+            var tbody = jQuery("<tbody/>")  
+            var thead = jQuery("<thead/>")  
+            var tr = jQuery("<tr/>")   
+            addHeader(tr,"Item No") 
+            addHeader(tr,"Item Name")
+           
+ 
+            thead.append(tr)
+     
+            for(row in list){
+                var tr = jQuery("<tr/>")   
+                addCellData(tr,list[row].ItemNumber)
+                addCellData(tr,list[row].Description)  
+               
+ 
+                tbody.append(tr)
+            }  
+            table.append(thead)
+            table.append(tbody)
+        }
+      
+       
+    } 
+}
+
 function bindingDataViewingRequestItem(response,table){
     var data = response
      for(x in data){  
@@ -2078,7 +2305,7 @@ function setupDataTable(table, data){
  
     dttable = table.DataTable({  
                      "aaData" : data.list,
-                     "bSort" : false,
+                     "bSort" :  false,
                      "aoColumns" : fields.Columns,  
                       scrollY:        (table.is(".main-table") || table.data("table") == "posubmit") ? '60vh' : ((table.data("table") == "auditlogs") ? "20vh" : "30vh"),
                       scrollCollapse: false,

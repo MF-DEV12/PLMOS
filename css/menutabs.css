@@ -65,7 +65,7 @@
 }
 
 .multitab-widget li a {
-  /*background: #048e81;*/
+  /*background: #172052;*/
   color: #aaa;
   display: block;
   padding: 15px;
@@ -91,9 +91,9 @@
   padding-bottom: 12px;
   /*margin-top: -10px;*/
   background: #fff;
-  color: #048e81;
+  color: #172052;
   text-decoration: none;
-  border-bottom:  5px solid #048e81;
+  border-bottom:  5px solid #172052;
   font-size: 14px;
   text-transform: uppercase;
 }

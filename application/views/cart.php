@@ -147,7 +147,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <p>&copy; 2016 Lampano Hardware.</p>
+            <p>&copy; 2017 <?=COMPANY_NAME;?>.</p>
           </div>
           <div class="col-sm-6">
           </div>

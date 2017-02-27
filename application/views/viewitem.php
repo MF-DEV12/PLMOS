@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
       
-    <title>Lampano Hardware</title>
+    <title>View item - <?=COMPANY_NAME;?></title>
 
 
     <link href="<?=base_url('css/homestyle/bootstrap.min.css');?>" rel="stylesheet">
@@ -114,7 +114,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <p>&copy; 2016 Lampano Hardware.</p>
+            <p>&copy; 2017 <?=COMPANY_NAME;?>.</p>
           </div>
           <div class="col-sm-6">
           </div>

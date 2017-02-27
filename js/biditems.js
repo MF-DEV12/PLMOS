@@ -2,6 +2,8 @@
       $('.tree li:has(ul)').addClass('parent_li').find(' > span').attr('title', 'Collapse this branch');
 
 
+
+
       $('.tree li.parent_li > span').on('click', function (e) {
           var children = $(this).parent('li.parent_li').find(' > ul > li');
           if (children.is(":visible")) {
@@ -26,51 +28,19 @@
          // $('.tree li > span:not(.active)').closest("li").find("ul").children().hide()
          // elem.closest("li").find("ul").children().show()
 
-         callAjaxJson("items/getItems", param, getItemsResponse, ajaxError)
+         callAjaxJson("biditems/getItems", param, getItemsResponse, ajaxError)
        });
    
       
       $("button.cart").click(function(e){
           location.href= baseUrl + "/Items/cart";
-      })
-
-      $("dl#list-variation dd").hover(
-        function(){
-          var elem = $(this)
-          var viewimage = elem.find("img").attr("src"); 
-
-          $("img#item-image").attr("src", viewimage)
-
-        },function(){
-          var selectedimage = $("dl#list-variation dd.active").find("img").attr("src");  
-          $("img#item-image").attr("src", selectedimage)
-
-
-        } )
-
-      $("dl#list-variation dd").click(function(e){
-          var elem = $(this)
-          $("dl#list-variation dd.active").removeClass("active");
-          elem.addClass("active");
-          $("span.item-price").text(toMoney(elem.data("price")))
-          $("button.btn-addtocart").attr("onclick", "orderItem('"+   elem.data("item")  + "-"+  elem.data("variant") +"');")
-
-          $("ul.variantname").empty()
-          var listvariant = elem.data("variantname")
-          for(x in listvariant){
-            $("ul.variantname").append("<li>"+ x + " : " + listvariant[x] + "</li>")
-          }
-
-
-      })
-      
-
+      }) 
 
 
       $("span.btn-itemsearch").click(function(e){
         var elem = $(this)
         if($.trim(elem.prev("input").val()).length > 0 )
-          location.href = baseUrl + "items?name=" + elem.prev("input").val()
+          location.href = baseUrl + "/biditems?name=" + elem.prev("input").val()
       })
 
       $("button.btn-checkout, button#btn-proceed").click(function(e){
@@ -105,6 +75,78 @@
      
   });
 
+
+
+bidtimer();
+
+function bidtimer(){
+  $("span.bidtimer").each(function(e){
+    var elem = $(this)
+    
+
+    var data = elem.data("range")
+    var startTime = new Date(data.StartDate); 
+    var endTime = new Date(data.EndDate);
+    var currentTime = ( startTime >  new Date) ? startTime : endTime
+   $("span#tmr"+data.ID).closest("div.timer-holder").attr("class","timer-holder");
+    if( startTime >  new Date){
+      // $("p#lastbid"+data.ID).hide()
+      $("span#tmr"+data.ID).html("<span style=\"font-size:12px;\">Starts " +  startTime.toLocaleString() + "</span>")
+      $("span#tmr"+data.ID).closest("div.timer-holder").addClass("soldbid");
+  
+      $("span#tmr"+data.ID).closest("div.item").find("button.btn-bid").addClass("disabled")
+      // $("span#tmr"+data.ID).text("Starts " +  startTime.toLocaleString())
+    }
+    else{
+
+        // PROGRESS TO BID
+        var total_seconds = (endTime  - new Date) / 1000;    
+        var hours = Math.floor(total_seconds / 3600);
+        total_seconds = total_seconds % 3600;
+
+        var minutes = Math.floor(total_seconds / 60);
+        total_seconds = total_seconds % 60;
+
+        var seconds = Math.floor(total_seconds);
+
+        hours = pretty_time_string(hours);
+        minutes = pretty_time_string(minutes);
+        seconds = pretty_time_string(seconds);
+        if(total_seconds > 0){
+            $("span#tmr"+data.ID).countdowntimer({
+                      hours : hours,
+                      minutes : minutes, 
+                      seconds : seconds,
+                      size : "lg"
+            });
+        if(hours == 0 && minutes <= 10){
+           $("span#tmr"+data.ID).closest("div.timer-holder").addClass("lastminutes"); 
+        } 
+        else{
+          $("span#tmr"+data.ID).closest("div.timer-holder").addClass("progressbid"); 
+        }
+
+        }
+        else{
+           $("span#tmr"+data.ID).closest("div.item").find("button.btn-bid")
+                .hide()
+          $("span#tmr"+data.ID).closest("div.timer-holder").addClass("soldbid"); 
+
+           $("span#tmr"+data.ID).closest("div.timer-holder").find("span.glyphicon-time").removeClass("glyphicon-time").addClass("glyphicon-thumbs-up")
+           $("span#tmr"+data.ID).text("SOLD")
+        }
+    }
+
+    
+
+  
+
+  })
+}
+function pretty_time_string(num) {
+    return ( num < 10 ? "0" : "" ) + num;
+}
+
 function categorymenuClick(elem){
 
      elem = $(elem)
@@ -133,16 +175,22 @@ function getItemsResponse(response){
                
                 item += "          <h5>"+ data[x].Name +"</h5>"
                 item += "          <p class=\"category\">"+ data[x].Category +"</p>"
-                item += "          <h6>"+ ((data[x].Stocks > 0) ? "Stocks:" + data[x].Stocks : "Out of Stocks") +"</h6>"
-                item += "          <b>Price: &#8369; "+ toMoney(data[x].Price) +"</b>"
+                item += "          <strong class=\"bidprice\" id=\"bidprice"+data[x].ID+"\">&#8369; "+data[x].CurrentBidPrice+"</strong> <br/>"
+                item += "          <p class=\"lastbid\" id=\"lastbid"+data[x].ID+"\"></span> <span id=\"lastbid"+data[x].ID+"\">"+data[x].LastBidUser+"</span> </p>"
+                item += "          <div class=\"timer-holder\">"
+                item += "              <span class=\"glyphicon glyphicon-time\"></span>"
+                item += "              <span class=\"bidtimer\" id=\"tmr"+data[x].ID+"\"  data-range='"+JSON.stringify(data[x])+"'><span>"
+                item += "          </div>"
                 item += "        </div>"
                 item += "        <div class=\"col-sm-12\">"
-                item += "          <button class=\"btn btn-action btn-buy\" onclick=\"orderItem('"+ data[x].ItemNumber +"');\"  data-toggle=\"modal\" data-backdrop=\"static\"  data-keyboard=\"false\" data-target=\"#confirmcart\" style=\"width:100%;\">Buy</button> "
+                item += "          <button class=\"btn btn-action btn-bid\" onclick=\"orderItem('"+ data[x].ID +"');\"  style=\"width:100%;\">BID</button> "
                 item += "        </div> "
                 item += "      </div>"
                 item += "   </div>"
-                $("div.list-items").append(item);  
+                $("div.list-items").append(item);   
+                  
             }
+            bidtimer();
           }else{
             $("div.list-items").append("<p class=\"empty\">No item(s) found.</p>"); 
           } 
@@ -157,64 +205,68 @@ function bindBreadCrumb(ol, data){
       ol.append("<li class=\"breadcrumb-item "+ ((x == (data.length-1)) ? "active" : "") + "\">"+data[x]+"</li>");
     }
 
-}
+} 
 
-function orderItem(item){
-    var param = new Object();
-    param.id = item;
-    callAjaxJson("Items/orderToCart", param, orderToCart, ajaxError) 
-}
+setInterval(function(e){
+ callAjaxJson("biditems/updateAllLastBidUsers", new Object(), 
+      function(response){
+          if(response){
+              var data = response
+              for(x in data){ 
+                    if($("span#lastbid" + data[x].BidItemID).text() != data[x].LastBidUser){
+                        $("p#lastbid" + data[x].BidItemID).addClass("focus") 
+                        setTimeout(function(e){
+                          $("p#lastbid" + data[x].BidItemID).removeClass("focus")
+                        },500) 
+                    }
+                    $("span#lastbid" + data[x].BidItemID).text(data[x].LastBidUser)  
+                    $("strong#bidprice" + data[x].BidItemID).html("&#8369; " + data[x].CurrentBidPrice)  
+                   
+              }
+                
+          }
+      },ajaxError )
+},1500)
 
-function orderToCart(response){
-    var data = response;
-
-    var modal = $("div#confirmcart")
-    var item = data.item[0]
-    $("span.countCart").text(data.carttotal)
-    modal.find("carttotal").text(data.carttotal)
-    modal.find(".cart-img").attr("src", baseUrl + "images/variant-folder/" + item.ImageFile)
-    modal.find("name").text(item.Name)
-    modal.find("category").text(item.Category)
-    modal.find("price").text(toMoney(item.Price))
-    modal.find("subtotal").text(toMoney(data.itemstotal))
-    modal.find("total").text(toMoney(data.itemstotal))
-}
-
-function incDecQty(elem, qty){
+function bidItemByUsers(id,elem){
     elem = $(elem)
-    var tr = elem.closest("tr")
-    var parentElem = elem.closest("div.btn-group")
-    var qtyElem = parentElem.find(".qty")
-    
-    var newqty = parseInt(qtyElem.text(),10) + qty
+     callAjaxJson("biditems/updateLastBidUsers", {"bidid": id}, 
+      function(response){
+          var data = response
+          try{
+            if(data.responseitem){ 
+                $("strong#bidprice" + id).html("&#8369; " + data.CurrentBidPrice)  
+                $("span#lastbid" + id).text(data.LastBidUser) 
 
-    if(newqty == 0){return;}
-    var param = new Object();
-    param.id = parentElem.data("item")
-    param.qty = newqty
-    callAjaxJson("Items/updateItemQtyonCart", param,
-        function(response){
-            if(response){
-              qtyElem.text(newqty)
-              tr.find("span.cart-total").text( toMoney(parseFloat(toMoneyValue(tr.find("span.cart-price").text()),2) * parseFloat(newqty,2)) )
-
-              var total = 0;
-              $("table#table-cart").find("span.cart-total").each(function(e){
-                  var row = $(this)
-                  total += parseFloat(toMoneyValue(row.text()),2)
+                $("p#lastbid" + data.BidItemID).addClass("focus") 
+                  setTimeout(function(e){
+                    $("p#lastbid" + data.BidItemID).removeClass("focus")
+                  },500) 
+            } else{
+              if(data.errormessage == "User not logged in."){
+                bootbox.alert("Please login your account before proceed to bid.", function(result){ 
+                  location.href = baseUrl + "login"
+                  
+                })
+              }
+            }
+          }catch(e){
+            if(data.errormessage == "User not logged in."){
+              bootbox.alert("Please login your account before proceed to bid.", function(result){
+                if(result){
+                  location.href = baseUrl + "login"
+                }
               })
-              $("dl#order-summary").find("span.subtotal").html("&#8369; " + toMoney(total))
-              $("dl#order-summary").find("span.total").html("<b>&#8369; " + toMoney(total) + "</b>")
+            }
+          }
 
-            } 
-
-        },
-    ajaxError)  
-
+           
+      },ajaxError )
 }
 
-function viewItems(item){
-   location.href = baseUrl + "items/view?id="+item
+ 
+function bidItemsView(item){
+   location.href = baseUrl + "biditems/view?id="+item
 }
 
 function removeCart(elem, item){

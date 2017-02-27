@@ -202,6 +202,9 @@ class Main extends CI_Controller {
 			$data["categories"] = $this->getCategoryList();
 			$data["allorders"] = $this->getOrders("");
 
+			$data["bidding"] = $this->getBidding();
+			
+
 			$data["rptcustomers"] = $this->getCustomers();
 			$data["rptitems"] = $this->getRptItems();
 			// $data["neworders"] = $this->getOrders("New");
@@ -253,14 +256,16 @@ class Main extends CI_Controller {
 		elseif($table == "allorders")
 			$data = $this->getOrders(""); 
 
+		elseif($table == "bidding")
+			$data = $this->getBidding(); 
+
 		elseif($table == "categories")
 			$data = $this->getCategoryList();
 		elseif($table == "rptcustomers")
 			$data = $this->getCustomers();
 		elseif($table == "rptitems")
 			$data = $this->getRptItems();
-		  
-
+		
 		elseif($table == "requestlist")
 			$data = $this->GetRequestListFromAdmin(""); 
 		elseif($table == "pendingorders")
@@ -1122,6 +1127,83 @@ class Main extends CI_Controller {
 			$this->db->query($qry); 
 			$this->query_model->insertAuditLogs("Decrease Stock after Order to shipped", "Update");
 		}
+
+	///
+
+	// BIDDING
+		function getBidding(){
+			$this->param = $this->query_model->param;  
+
+			$this->param["table"] = "bidding"; 
+			$this->param["fields"] = "*,'View items <span class=\"glyphicon glyphicon-menu-right pull-right\"></span>' AS `ViewItems`"; 
+
+			$data["list"] =  $this->query_model->getData($this->param);
+			$data["fields"] = "ViewItems|,BidCode|Bid Code,Description|Description,StartBidPrice|Start Price,BidPrice|Bid Price(per user),StartDate|Start Date,EndDate|End Date,CreatedDate|Date Created";
+			return $data;
+		}
+
+		function getItemsForBid(){
+			$this->param = $this->query_model->param;  
+
+			$this->param["table"] = "vw_itemsforsale"; 
+			$this->param["fields"] = "*, CONCAT('<div class=\"row\"><div class=\"col-sm-3\"><img src=\"". base_url("images/variant-folder") ."/',ImageFile,'\" alt=\"\" width=\"70px\" height=\"70px\"/></div><div class=\"col-sm-9\">',Name, '<br/>', VariantName,'</div></div>') 'Description',CONCAT('<input type=\"checkbox\" class=\"chkBidItems\" onchange=\"chkbidItem(this);\"/>') `Action`";  
+
+			$data["list"] =  $this->query_model->getData($this->param);
+			$data["fields"] = "Action|<input type=\"checkbox\" id=\"chkallbiditems\" onchange=\"chkAllbidItem(this);\"/>,ItemNumber|Item No,Description|Item name"; 
+
+			$list["biditemlist"] = $data; 
+			echo json_encode($list); 
+		}
+
+		function GetBidItemsByBidCode(){
+ 
+			$bidcode = $this->input->post("bidcode");  
+			 
+			$this->param = $this->query_model->param;  
+
+			$this->param["table"] = "vw_biditems"; 
+			$this->param["fields"] = "ItemNumber,CONCAT('<div class=\"row\"><div class=\"col-sm-3\"><img src=\"". base_url("images/variant-folder") ."/',ImageFile,'\" alt=\"\" width=\"70px\" height=\"70px\"/></div><div class=\"col-sm-9\">',Name, '<br/>', VariantName,'</div></div>') 'Description'"; 
+			$this->param["conditions"] = "BidCode = '$bidcode'"; 
+
+			$data["list"] =  $this->query_model->getData($this->param);
+			$data["fields"] = "ItemNumber|Item No,Description|Item Name"; 
+				 
+			$list["child-".$bidcode] = $data;
+		 
+			echo json_encode($list);
+		}
+
+
+		function addBid(){
+			$data = $this->input->post("data");
+			$data = json_decode($data);
+			$items = $this->input->post("items");
+			$items = json_decode($items);
+
+			$this->param = $this->query_model->param;  
+
+			$this->param["table"] = "bidding";
+			$this->param["dataToInsert"] = $data;
+			$this->param["transactionname"] = "1 bid created.";
+			$this->query_model->insertData($this->param);
+
+			 
+
+			foreach ($items as $i) {
+				$this->param = $this->query_model->param;  
+				$itemdata["ItemNumber"] = $i->ItemNo;
+				$itemdata["VariantNo"] = $i->VariantNo;
+				$itemdata["BidCode"] = $data->BidCode;
+				$this->param["table"] = "biddingitems";
+				$this->param["dataToInsert"] = $itemdata; 
+				$this->query_model->insertData($this->param);
+			}
+
+			$list["bidding"] = $this->getBidding();
+			echo json_encode($list);
+		}
+
+
 
 	///
 

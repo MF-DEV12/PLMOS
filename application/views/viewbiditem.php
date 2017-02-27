@@ -3,13 +3,13 @@
 <head>
     <!-- Include meta tag to ensure proper rendering and touch zooming -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php $view = $this->session->userdata("itemfor"); ?>
 
       
-    <title><?=(($view) ? (($view==1) ? "What we Sell" : "What we Buy") : "Products");?> - <?=COMPANY_NAME;?></title>
+    <title>View item - <?=COMPANY_NAME;?></title>
 
 
     <link href="<?=base_url('css/homestyle/bootstrap.min.css');?>" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?=base_url('css/datatables/jquery.dataTables.css');?>">
     <link href="<?=base_url('css/homestyle/animate.min.css');?>"  rel="stylesheet"> 
     <link href="<?=base_url('css/homestyle/font-awesome.min.css');?>" rel="stylesheet">
     <link href="<?=base_url('css/homestyle/lightbox.css');?>" rel="stylesheet">
@@ -22,115 +22,79 @@
    
 </head>
 <body>
-
 <?php $this->load->view("category_menu");?>
 
 <div id="main">
     <div class="preloader"> <i class="fa fa-circle-o-notch fa-spin"></i></div>
-   <?php $this->load->view("header_home");?>
+     <?php $this->load->view("header_home");?>
  
 
+ 
 
-<section id="orders" style="padding-top: 0px;">
-    <div class="container">
-      <div class="search-mobile">
-        <input type="text" placeholder="Search for items.." class="form-control"/>
-        <span class="glyphicon glyphicon-search btn-itemsearch"></span> 
-      </div>
+<section id="orders" style="padding: 0px">
+    <?php $items = $items[0];?>
+    <div class="container" style="height: 700px;">
       <div class="row">
-        <div class="col-sm-3 category-treeview">
-
-          <div id="collapseDVR3" class="panel-collapse">
-
-              <div class="tree ">
-                  <h5>Select Category:</h5>
-                   <ul> 
-                      <?php foreach($listfamily as $f) {?>
-                      <li> 
-                         <?php
-                            $fno = $f->Level1No;
-                            $listcategorybyfamily = array_filter( $listcategory,  function ($e) use ($fno) { return $e->Level1No == $fno; } ); 
-                            $setFamilyActive = "";
-                            if(count($family) > 0){
-                              $setFamilyActive = ($family[0]->Level1No == $fno) ? "class=\"active\"" : "";
-                            }
-                         ?> 
-                           <span data-id='{"l1":"<?=$fno;?>"}' data-name='["<?=$f->Name1?>"]' <?=$setFamilyActive;?>><i <?=(($listcategorybyfamily) ? "class=\"fa fa-plus-square\"" : "")?>></i> <?=$f->Name1;?></span> 
-
-                         <?php if($listcategorybyfamily) {?>
-                           <ul>
-                           <?php foreach($listcategorybyfamily as $c) {?>
-                           
-                               <li>  
-                                  <?php
-                                      $cno = $c->Level2No; 
-                                      $listSubcategorybyfamily = array_filter( $listsubcategory,  function ($e) use ($fno, $cno) { return $e->Level1No == $fno && $e->Level2No == $cno;  } ); 
-                                  ?>
-                                   <span data-id='{"l1":"<?=$fno;?>","l2":"<?=$cno;?>"}' data-name='["<?=$f->Name1?>","<?=$c->Name2?>"]'><i <i <?=(($listSubcategorybyfamily) ? "class=\"fa fa-plus-square\"" : "")?>></i> <?=$c->Name2;?></span>  
-                                   <?php if($listSubcategorybyfamily) {?>
-                                     <ul>
-                                     <?php foreach($listSubcategorybyfamily as $sc) {?> 
-                                         <li><span data-id='{"l1":"<?=$fno;?>","l2":"<?=$cno;?>","l3":"<?=$sc->Level3No;?>"}' data-name='["<?=$f->Name1?>","<?=$c->Name2?>","<?=$sc->Name3?>"]'><i></i> <?=$sc->Name3;?></span></li> 
-                                     <?php } ?>
-                                     </ul>
-                                   <?php } ?>
-                               </li> 
-                           <?php } ?>
-
-                           </ul>
-                         <?php } ?>
-
-
-
-
-                      </li>
-                     <?php } ?>
-                       
-                    </ul>
-                 
-              </div>
-          </div>
-
-        </div>
-          
-        <div class="heading text-center col-xs-12 col-sm-12 col-md-9 col-lg-9 wow fadeInLeft" data-wow-duration="1000ms" data-wow-delay="300ms">
-            <h2 style="text-align: left;"><?=(($view) ? (($view==1) ? "What we Sell" : "What we Buy") : "");?></h2>
-          
-        <?php if(count($family) > 0){ ?>
-          <ol class="breadcrumb item-header">
-              <li class="breadcrumb-item <?=((!$category) ? "active" : "");?>"><?=$family[0]->Name1;?></li>  
+        <div class="col-sm-12 col-md-5">
+          <h3 style="margin-bottom: 0px;"><?=$items->Name;?></h3>
+          <ol class="breadcrumb item-category">
+            <li class="breadcrumb-item"><?=$items->Name1?></li>  
+            <?php if($items->Name2) { ?> 
+              <li class="breadcrumb-item"><?=$items->Name2?></li>  
+            <?php } ?> 
+            <?php if($items->Name3) { ?> 
+              <li class="breadcrumb-item"><?=$items->Name3?></li>  
+            <?php } ?> 
+           
           </ol>
-        <?php } else{ ?>
-          <ol class="breadcrumb item-header">
-              <li class="breadcrumb-item"><span class="glyphicon glyphicon-info-sign"></span> <?=count($items)?> item(s) result found.</li>  
-          </ol>
-        <?php } ?>
-        <div class="row list-items">
-          <?php if($items){ ?>
-            <?php foreach($items as $key) {?>
-                 <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3 item" title="Click to view">
-                      <div class="row">
-                        <div class="col-sm-12 item-holder"  onclick="viewItems('<?=$key->ItemNumber?>');">
-                          <img width="200px" height="200px" src="images/variant-folder/<?=$key->ImageFile?>" alt="" onerror="this.src='<?=base_url("images/noimage.gif")?>';"/>
-                          <h5><?=$key->Name?></h5>
-                          <p class="category"><?=$key->Category?></p>
-                          <h6><?=(($key->Stocks > 0) ? "Stock: " . $key->Stocks : "Out of Stocks");?></h6>
-                          <b>Price: &#8369; <?=number_format($key->Price,2)?></b>
-                        </div>
-                        <div class="col-sm-12">
-                          <button class="btn btn-action btn-buy"  data-toggle="modal" data-backdrop="static"  data-keyboard="false" data-target="#confirmcart" onclick="orderItem('<?=$key->ItemNumber?>');"  style="width:100%;" <?=(($key->Stocks > 0) ? "": "disabled");?>>Buy</button> 
-                        </div> 
-                      </div>
-                   </div>
-            <?php } ?>
-          <?php }  ?>
+          <div align="center" style="padding: 35px;">
+            <img id="item-image" src="<?=base_url('images/variant-folder/'. $items->ImageFile);?>" alt="" height="70%" width="90%">
             
+          </div>
         </div>
-          
+        <div class="col-sm-12 col-md-7" style="padding-top: 32px;">
+          <h5>Item Specification:</h5>
+          <dl id="items-specs">
+            <dd style="border-bottom: 1px solid #ddd;">
+              <a class="btn btn-action pull-right" target="_blank" href="<?=base_url('biditems/generateBidSummary?id='.$bidid)?>"><i class="fa fa-print" aria-hidden="true"></i> Print Bid</a><br/>
+              <ul class="variantname">
+                 <?php $variantname = json_decode($items->VariantNameJSON);?>
+                 <?php foreach($variantname as $key => $value){ ?> 
+                  <li><?=$key?> : <?=$value;?></li>
+                 <?php } ?> 
+              </ul>
 
-
+            </dd>
+             
+            <dd>
+              <span class="pull-right">Status: <span class="label <?=($items->BidStatus == "PROGRESS") ? "label-danger" : "label-default"?>"><?=$items->BidStatus?></span></span>
+              <h4>Bid History:</h4>
+              <div style="height:500px;overflow-y: auto;">
+                  <table class="table">
+                  <thead>
+                    <tr>
+                    <th>Name</th>
+                    <th>Bid Price</th>
+                    </tr>
+                  </thead>
+                  <tbody >
+                    <?php foreach($bidusers as $key) { ?>
+                    <tr <?=($this->session->userdata('bidname') == $key->BidUsername) ? "class=\"curbiduser\"" : "" ?>>
+                      <td>
+                        <span><strong><i class="fa fa-user-circle-o" aria-hidden="true"></i> <?=$key->BidUsername?></strong></span><br/>
+                        <span style="font-size: 11px;"><i class="fa fa-clock-o" aria-hidden="true"></i> <?=date('M d Y h:i:s A', strtotime($key->CreatedDate))?></span>
+                      </td>
+                      <td><span>&#8369; <?=$key->price?></span> </td>
+                    </tr>
+                    <?php } ?> 
+                    
+                  </tbody>
+                  </table>
+              </div>
+            </dd>
+          </dl> 
         </div>
-      </div> 
+      </div>
     </div>
    
  
@@ -164,7 +128,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm-6">
-            <p>&copy; 2017 <?=COMPANY_NAME;?>.</p>
+            <p>&copy; 2017  <?=COMPANY_NAME;?></p>
           </div>
           <div class="col-sm-6">
           </div>
@@ -173,8 +137,7 @@
     </div>
 </footer>
 
-
-  <div class="modal fade" id="confirmcart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-size: 20px;">
+ <div class="modal fade" id="confirmcart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="font-size: 20px;">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           
@@ -215,16 +178,14 @@
           </div>
         </div>
       </div>
-  </div>
-</div> 
-
+    </div>
+</div>
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/bootstrap.min.js")?>"></script>
       <script type="text/javascript" src='<?=base_url("js/utility/ajaxCall.js")?>'></script>
       <script type="text/javascript" src='<?=base_url("js/maskMoney.js")?>'></script>
       <script type="text/javascript" src='<?=base_url("js/utility/helpers.js")?>'></script>
  
-      <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/jquery.inview.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/wow.min.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/homestyle/mousescroll.js")?>"></script>
@@ -235,11 +196,9 @@
       <script type="text/javascript" src="<?=base_url("js/side-menu/side-menu.js")?>"></script>
       <script type="text/javascript" src="<?=base_url("js/customerorder.js")?>"></script>
 
-      
-
-
+    
  
      
 </body>
     
-</html>         
+</html> 
