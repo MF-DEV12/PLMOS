@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class BidItems extends CI_Controller {
+class Biditems extends CI_Controller {
  private $param;
  	function __construct(){
  		parent::__construct();
